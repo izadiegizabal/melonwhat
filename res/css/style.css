@@ -2,6 +2,11 @@ html, body {
     height: 100%;
 }
 
+html {
+    --correct-color: #81C784;
+    --incorrect-color: #E57373;
+}
+
 .mdl-mini-footer {
     background-color: #262626;
 }
@@ -65,11 +70,15 @@ html, body {
 }
 
 .progress {
+    margin-right: 5px;
     width: 15px !important;
     height: 15px !important;
     border: black solid 2.5px;
     border-radius: 15px;
-    background-color: #81C784;
+}
+
+.center-lower-section{
+    text-align: center;
 }
 
 /* FOR MATERIAL ICONS TWOTONE */
