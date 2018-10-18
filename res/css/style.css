@@ -70,12 +70,19 @@ html {
     font-style: italic;
     font-size: 1.5rem;
     line-height: 2rem;
+    width: 100%;
+    text-align: center;
 }
 
 .card-img {
     height: 250px;
     width: 100%;
     object-fit: cover;
+}
+
+.question-section {
+    width: 100%;
+    text-align: center;
 }
 
 .question-section button {
