@@ -1,11 +1,9 @@
-/* Global variable:s videogame_ans */
-var videogame_ans;
-var videogame_ans_arr;
+/* Global variable:s aux_data */
+var aux_data;
 
 window.onload = function () {
-    console.log("Get videogames");
-    
-    getVideogames();
+    document.getElementById('txt').style.display = 'inline';
+    getFruits()
 
 }
 
@@ -34,17 +32,341 @@ function displayResults() {
 
 function getFruits(){
 
-
-}
-
-function getVideogames() {
+    document.getElementById('question').innerHTML = 'What fruit is it?';
+    document.getElementById('txt').style.display = 'none';
 
     /* Counters */
     var cont = 0;
     var ins_for=0;
 
-    videogame_ans = getRandomInt(0,3);
-    console.log(videogame_ans);
+    aux_data = getRandomInt(0,3);
+    
+    
+
+    const endpointUrl = 'https://query.wikidata.org/sparql',
+      sparqlQuery = `SELECT DISTINCT ?fruit ?fruitLabel (MIN(?image) AS ?img) (MD5(CONCAT(str(?fruit),str(RAND()))) as ?random) WHERE {
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "de". }
+          ?fruit wdt:P279 wd:Q3314483.
+          ?fruit rdfs:label ?fruitLabel.
+          ?fruit wdt:P18 ?image. 
+        }
+        GROUP BY ?fruit ?fruitLabel
+        ORDER BY ?random
+        LIMIT 4`,
+        fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
+        headers = { 'Accept': 'application/sparql-results+json' };
+
+    fetch( fullUrl, { headers } )
+    .then( body => body.json() )
+    .then( json => {
+        const { head: { vars }, results } = json;
+        for ( const result of results.bindings ) {
+            //console.log(results.bindings);
+            ins_for = 0;
+            for ( const variable of vars ) {
+                //console.log( '%s: %o', variable, result[variable] );  
+                switch (ins_for) {
+                        case 0:
+                            /* wd */
+                            break;
+                        case 1:
+                            /* label */
+                            format = result[variable].value;
+                            switch(cont){
+                                case 0:
+                                    
+                                    document.getElementById('ans0').innerHTML = format;
+                                    break;
+                                case 1:
+                                    document.getElementById('ans1').innerHTML = format;
+                                    break;
+                                case 2:
+                                    document.getElementById('ans2').innerHTML = format;                                
+                                    break;
+                                case 3:
+                                    document.getElementById('ans3').innerHTML = format;                                
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            /* img */
+                            /* date */
+                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
+                        break;
+                        default:
+                            break;
+                }
+                ins_for++;
+                //console.log(ins_for);
+                
+            }
+            cont++;
+            //console.log( '---' );
+
+        }
+        
+    } );
+
+}
+
+function getCharacters(){
+
+    document.getElementById('question').innerHTML = 'Who is it?';
+
+    document.getElementById('txt').style.display = 'none';
+
+    /* Counters */
+    var cont = 0;
+    var ins_for=0;
+
+    aux_data = getRandomInt(0,3);
+    
+
+    const endpointUrl = 'https://query.wikidata.org/sparql',
+      sparqlQuery = `SELECT DISTINCT ?fictional_character ?fictional_characterLabel (MIN(?image) AS ?img) (MD5(CONCAT(str(?fictional_character),str(RAND()))) as ?random) WHERE {
+              SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+              OPTIONAL { ?fictional_character wdt:P31 wd:Q15632617. }
+              OPTIONAL { ?fictional_character wdt:P31 wd:Q95074. }
+              ?fictional_character wdt:P18 ?image. 
+              ?fictional_character rdfs:label ?fictional_characterLabel
+            }
+            GROUP BY ?fictional_character ?fictional_characterLabel 
+            ORDER BY ?random
+            LIMIT 4`,
+        fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
+        headers = { 'Accept': 'application/sparql-results+json' };
+
+    fetch( fullUrl, { headers } )
+    .then( body => body.json() )
+    .then( json => {
+        const { head: { vars }, results } = json;
+        for ( const result of results.bindings ) {
+            //console.log(results.bindings);
+            ins_for = 0;
+            for ( const variable of vars ) {
+                //console.log( '%s: %o', variable, result[variable] );  
+                switch (ins_for) {
+                        case 0:
+                            /* wd */
+                            break;
+                        case 1:
+                            /* label */
+                            format = result[variable].value;
+                            switch(cont){
+                                case 0:
+                                    
+                                    document.getElementById('ans0').innerHTML = format;
+                                    break;
+                                case 1:
+                                    document.getElementById('ans1').innerHTML = format;
+                                    break;
+                                case 2:
+                                    document.getElementById('ans2').innerHTML = format;                                
+                                    break;
+                                case 3:
+                                    document.getElementById('ans3').innerHTML = format;                                
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            /* img */
+                            /* date */
+                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
+                        break;
+                        default:
+                            break;
+                }
+                ins_for++;
+                //console.log(ins_for);
+                
+            }
+            cont++;
+            //console.log( '---' );
+
+        }
+        
+    } );
+
+}
+
+function getAnimals(){
+
+    document.getElementById('question').innerHTML = 'How do you describe the picture?';
+
+    document.getElementById('txt').style.display = 'none';
+
+    /* Counters */
+    var cont = 0;
+    var ins_for=0;
+
+    aux_data = getRandomInt(0,3);
+
+    
+
+    const endpointUrl = 'https://query.wikidata.org/sparql',
+      sparqlQuery = `SELECT DISTINCT ?animal ?animalLabel (MIN(?image) AS ?img) (MD5(CONCAT(str(?animal),str(RAND()))) as ?random) 
+            WHERE {
+              SERVICE wikibase:label { bd:serviceParam wikibase:language 'en'. }
+              ?animal wdt:P279* wd:Q729.
+              ?animal rdfs:label ?animalLabel.
+              ?animal wdt:P18 ?image.
+            }
+            GROUP BY ?animal ?animalLabel
+            ORDER BY ?random
+            LIMIT 4`,
+        fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
+        headers = { 'Accept': 'application/sparql-results+json' };
+
+    fetch( fullUrl, { headers } )
+    .then( body => body.json() )
+    .then( json => {
+        const { head: { vars }, results } = json;
+        for ( const result of results.bindings ) {
+            //console.log(results.bindings);
+            ins_for = 0;
+            for ( const variable of vars ) {
+                //console.log( '%s: %o', variable, result[variable] );  
+                switch (ins_for) {
+                        case 0:
+                            /* wd */
+                            break;
+                        case 1:
+                            /* label */
+                            format = result[variable].value;
+                            switch(cont){
+                                case 0:
+                                    
+                                    document.getElementById('ans0').innerHTML = format;
+                                    break;
+                                case 1:
+                                    document.getElementById('ans1').innerHTML = format;
+                                    break;
+                                case 2:
+                                    document.getElementById('ans2').innerHTML = format;                                
+                                    break;
+                                case 3:
+                                    document.getElementById('ans3').innerHTML = format;                                
+                                    break;
+                            }
+                            break;
+                        case 2:
+                            /* img */
+                            /* date */
+                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
+                        break;
+                        default:
+                            break;
+                }
+                ins_for++;
+                //console.log(ins_for);
+                
+            }
+            cont++;
+            //console.log( '---' );
+
+        }
+        
+    } );
+
+}
+
+
+function getBrands(){
+
+    document.getElementById('question').innerHTML = 'Where is it from?';
+
+    /* Counters */
+    var cont = 0;
+    var ins_for=0;
+
+    aux_data = getRandomInt(0,3);
+
+    
+
+    const endpointUrl = 'https://query.wikidata.org/sparql',
+      sparqlQuery = `SELECT DISTINCT ?marca ?marcaLabel ?location ?locationLabel ?logo (MD5(CONCAT(STR(?marca), STR(RAND()))) AS ?random) WHERE {
+              SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+              ?marca wdt:P31 wd:Q167270.
+              ?marca rdfs:label ?marcaLabel.
+              ?marca wdt:P159 ?location.
+              ?marca wdt:P154 ?logo.
+            }
+            ORDER BY ?random
+            LIMIT 4`,
+        fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
+        headers = { 'Accept': 'application/sparql-results+json' };
+
+    fetch( fullUrl, { headers } )
+    .then( body => body.json() )
+    .then( json => {
+        const { head: { vars }, results } = json;
+        for ( const result of results.bindings ) {
+            //console.log(results.bindings);
+            ins_for = 0;
+            for ( const variable of vars ) {
+                //console.log( '%s: %o', variable, result[variable] );  
+                switch (ins_for) {
+                        case 0:
+                            /* wd */
+                            break;
+                        case 1:
+                            /* label */
+                            if(aux_data == cont) document.getElementById('txt').innerHTML = result[variable].value;
+                            break;
+                        case 2:
+                            /* img */
+                            
+
+                            break;
+                        case 3:
+                            /* date */
+                            format = result[variable].value;
+                            switch(cont){
+                                case 0:
+                                    
+                                    document.getElementById('ans0').innerHTML = format;
+                                    break;
+                                case 1:
+                                    document.getElementById('ans1').innerHTML = format;
+                                    break;
+                                case 2:
+                                    document.getElementById('ans2').innerHTML = format;                                
+                                    break;
+                                case 3:
+                                    document.getElementById('ans3').innerHTML = format;                                
+                                    break;
+                            }
+                            break;
+                        case 4:
+                            /* date */
+                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
+                        break;
+                        default:
+                            break;
+                }
+                ins_for++;
+                //console.log(ins_for);
+                
+            }
+            cont++;
+            //console.log( '---' );
+
+        }
+        
+    } );
+
+}
+
+function getVideogames() {
+
+    document.getElementById('question').innerHTML = 'When was it released?';
+
+    /* Counters */
+    var cont = 0;
+    var ins_for=0;
+
+    aux_data = getRandomInt(0,3);
+
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -65,7 +387,7 @@ function getVideogames() {
     fetch( fullUrl, { headers } )
     .then( body => body.json() )
     .then( json => {
-        const { head: { vars }, results } = json;
+        //const { head: { vars }, results } = json;
         for ( const result of results.bindings ) {
             //console.log(results.bindings);
             ins_for = 0;
@@ -77,11 +399,11 @@ function getVideogames() {
                             break;
                         case 1:
                             /* label */
-                            if(videogame_ans == cont) document.getElementById('txt').innerHTML = result[variable].value;
+                            if(aux_data == cont) document.getElementById('txt').innerHTML = result[variable].value;
                             break;
                         case 2:
                             /* img */
-                            if(videogame_ans == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
 
                             break;
                         case 3:
