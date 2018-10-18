@@ -27,7 +27,7 @@
             <div class="mdl-grid">
                 <br>
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--3-offset-desktop mdl-cell--6-col-desktop">
-                    <div class="main-card mdl-card mdl-shadow--2dp">
+                    <div id="top" class="main-card mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
                             <h2 class="mdl-card__title-text">Welcome!</h2>
                         </div>
@@ -39,7 +39,7 @@
                             <br>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <a onclick="play()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                 Melon What?
                             </a>
                         </div>
@@ -53,7 +53,7 @@
 
                     <br>
 
-                    <div class="main-card mdl-card mdl-shadow--2dp">
+                    <div id="game" class="main-card mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
                         </div>
                         <div class="mdl-card__supporting-text">
@@ -64,18 +64,18 @@
                                 <span id="txt" class="randomfact">Watermelon</span>
                                 <div class="mdl-cell mdl-cell--12-col"></div>
                                 <div class="question-section mdl-cell mdl-cell--12-col">
-                                    <span class="mdl-card__title-text">Witch is the correct size?</span>
+                                    <span id="question" class="mdl-card__title-text">Witch is the correct size?</span>
                                     <br>
-                                    <button id="ans0" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans0" onclick="checkAnswer(0)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.5m
                                     </button>
-                                    <button id="ans1" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans1" onclick="checkAnswer(1)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.25m
                                     </button>
-                                    <button id="ans2" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans2" onclick="checkAnswer(2)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.05m
                                     </button>
-                                    <button id="ans3" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans3" onclick="checkAnswer(3)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         1m
                                     </button>
                                 </div>
@@ -89,13 +89,13 @@
                             <span class="progress mdl-shadow--4dp material-icons-new"></span>
                         </div>
                         <div class="mdl-card__menu">
-                            <span class="mdl-card__title-text">10s</span>
+                            <span id="time" class="mdl-card__title-text">10s</span>
                         </div>
                     </div>
 
                     <br>
 
-                    <div class="main-card mdl-card mdl-shadow--2dp">
+                    <div id="results" class="main-card mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
                             <div class="mdl-layout-spacer"></div>
                             <i class="material-icons-new twotone-star"></i> <span class="mdl-card__title-text">&nbsp; &nbsp; Total Score</span>

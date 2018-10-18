@@ -1,8 +1,15 @@
 /* Global variable:s videogame_ans */
-var videogame_ans;
-var videogame_ans_arr;
+var answer;
 
 window.onload = function () {
+    /* Main state: */
+    // Hide game card
+    document.getElementById('game').style.display = 'none';
+    // Hide punctuation card
+    document.getElementById('results').style.display = 'none';
+
+
+
     console.log("Get videogames");
     
     getVideogames();
@@ -13,13 +20,43 @@ window.onload = function () {
 
 /* Play game */
 function play(){
+    document.getElementById('game').style.display = 'flex';
+    document.getElementById('top').style.display = 'none';
+
+    // Start timer
+    var t_seconds = 10, display = document.querySelector('#time');
+    startTimer(t_seconds, display);
+
+
+    console.log("ye");
 
 }
 
 /* Check answer */
-function checkAnswer() {
-    
+function checkAnswer(selected) {
+    if(answer == selected) post_actions(true);
+    else post_actions(false); 
 }
+
+/* Post actions answer*/
+function post_actions(param) {
+    // Adds points, green points, change color to green o
+    switch(param){
+        case true:
+            // Correct answer
+
+
+            break;
+        case false:
+            // Wrong answer
+
+
+            break;
+        default:
+            break;
+    }
+}
+
 
 /* Load question info */
 function loadNext() {
@@ -43,8 +80,10 @@ function getVideogames() {
     var cont = 0;
     var ins_for=0;
 
-    videogame_ans = getRandomInt(0,3);
-    console.log(videogame_ans);
+    answer = getRandomInt(0,3);
+    console.log("Respuesta correcta es: ");
+    
+    console.log(answer);
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -77,11 +116,11 @@ function getVideogames() {
                             break;
                         case 1:
                             /* label */
-                            if(videogame_ans == cont) document.getElementById('txt').innerHTML = result[variable].value;
+                            if(answer == cont) document.getElementById('txt').innerHTML = result[variable].value;
                             break;
                         case 2:
                             /* img */
-                            if(videogame_ans == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
 
                             break;
                         case 3:
@@ -124,16 +163,7 @@ function convertDate(inputFormat) {
     function pad(s) { return (s < 10) ? '0' + s : s; }
     var d = new Date(inputFormat);
     return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
-  }
-
-function updateElements(img, ans1, ans2, ans3, ans4){
-    document.getElementById('ask_img').src = img;
-    document.getElementById('ans1').innerHTML = ans1;
-    document.getElementById('ans2').innerHTML = ans2;
-    document.getElementById('ans3').innerHTML = ans3;
-
 }
-
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -141,9 +171,6 @@ function getRandomInt(min, max) {
 
 
 /* Timer countdown */
-/* 
-    <div id="timer"><span id="time">10</span> seconds!</div>
- 
 function startTimer(duration, display) {
     var timer = duration,seconds;
     setInterval(function () {
@@ -151,19 +178,10 @@ function startTimer(duration, display) {
         seconds = parseInt(timer % 60, 10);
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = seconds;
+        display.textContent = seconds + 's';
 
         if (--timer < 0) {
             timer = duration;
         }
     }, 1000);
 }
-
-window.onload = function () {
-    var t_seconds = 10,
-        display = document.querySelector('#time');
-    startTimer(t_seconds, display);
-    console.log("ye");
-    
-};
-*/
