@@ -54,6 +54,24 @@ html, body {
     line-height: 2rem;
 }
 
+.card-img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.question-section button {
+    margin-bottom: 10px;
+}
+
+.progress {
+    width: 15px !important;
+    height: 15px !important;
+    border: black solid 2.5px;
+    border-radius: 15px;
+    background-color: #81C784;
+}
+
 /* FOR MATERIAL ICONS TWOTONE */
 .material-icons-new {
     display: inline-block;
