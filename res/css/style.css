@@ -1,3 +1,16 @@
+html, body {
+    height: 100%;
+}
+
+.mdl-mini-footer {
+    background-color: #262626;
+}
+
+.mdl-logo {
+    margin: 0;
+    padding: 0;
+}
+
 .mdl-layout__header-row {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -14,4 +27,45 @@
     font-weight: 700;
     font-style: italic;
     font-size: 3rem;
+}
+
+.mdl-layout__content {
+    background-color: #434343;
+}
+
+.mdl-layout {
+    height: 100%;
+}
+
+.main-card{
+    width: 100%;
+    min-width: 100%;
+}
+
+.mdl-card__title-text {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+}
+
+.randomfact {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+/* FOR MATERIAL ICONS TWOTONE */
+.material-icons-new {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.icon-white {
+    webkit-filter: contrast(4) invert(1);
+    -moz-filter: contrast(4) invert(1);
+    -o-filter: contrast(4) invert(1);
+    filter: contrast(4) invert(1);
 }
