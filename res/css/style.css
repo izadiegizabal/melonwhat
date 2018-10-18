@@ -1,4 +1,4 @@
-html, body {
+body {
     height: 100%;
 }
 
@@ -9,6 +9,8 @@ html {
 
 .mdl-mini-footer {
     background-color: #262626;
+    height: 50px;
+    padding: 15px;
 }
 
 .mdl-logo {
@@ -23,7 +25,7 @@ html {
 }
 
 .mdl-layout__header-row {
-    padding-left: 0;
+    margin-left: -50px;
 }
 
 .mdl-layout-title{
@@ -79,6 +81,24 @@ html {
 
 .center-lower-section{
     text-align: center;
+}
+
+.mdl-layout-title-mobile {
+    display: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+    header  .mdl-layout-title {
+        display: none;
+    }
+    header .mdl-layout-title-mobile{
+        display: block;
+    }
+
+    .mdl-layout__header-row {
+        margin-left: 0;
+    }
 }
 
 /* FOR MATERIAL ICONS TWOTONE */
