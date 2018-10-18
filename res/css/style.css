@@ -81,7 +81,7 @@ html {
 .card-img {
     height: 250px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .question-section {
@@ -107,6 +107,16 @@ html {
 
 .mdl-layout-title-mobile {
     display: none;
+}
+
+.incorrectButton {
+    transition: background-color 0.3s ease-in;
+    background-color: #EF5350 !important;
+}
+
+.correctButton {
+    transition: background-color 0.3s ease-in;
+    background-color: #66BB6A !important;
 }
 
 
