@@ -2,6 +2,14 @@ body {
     height: 100%;
 }
 
+.correct{
+    background-color: #81C784;;
+}
+
+.wrong{
+    background-color: #E57373
+}
+
 html {
     --correct-color: #81C784;
     --incorrect-color: #E57373;

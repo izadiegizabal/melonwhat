@@ -2,12 +2,16 @@
 /* Global variable:s answer */
 
 var answer;
+var nQuestion;
 
 
 window.onload = function () {
+    /* Main state: */
+    // Hide game card
+    document.getElementById('game').style.display = 'none';
+    // Hide punctuation card
+    document.getElementById('results').style.display = 'none';
     document.getElementById('txt').style.display = 'inline';
-    getFruits()
-
 }
 
 
@@ -21,8 +25,14 @@ function play(){
     var t_seconds = 10, display = document.querySelector('#time');
     startTimer(t_seconds, display);
 
+    // Initialize variables
+    nQuestion = 0;
 
-    console.log("ye");
+    loadNext(nQuestion);
+
+    //console.log("Get videogames");
+    //getVideogames();
+
 
 }
 
@@ -30,31 +40,96 @@ function play(){
 function checkAnswer(selected) {
     if(answer == selected) post_actions(true);
     else post_actions(false); 
+
+    nQuestion++;
 }
 
 /* Post actions answer*/
 function post_actions(param) {
     // Adds points, green points, change color to green o
-    switch(param){
-        case true:
-            // Correct answer
+    if(nQuestion < 5){
 
+        var element = document.getElementsByClassName('progress')[nQuestion];
+        
+        switch(param){
+            case true:
+                // Correct answer
+                element.classList.add('correct');
+                break;
+            case false:
+                // Wrong answer
+                element.classList.add('wrong');
+                break;
+            default:
+                break;
+        }
 
-            break;
-        case false:
-            // Wrong answer
-
-
-            break;
-        default:
-            break;
     }
+
+    ////////////
+    ////////////
+    // LINE 70 ERROR IDKFWHY
+    ////////////
+    ////////////
+
+    // Highlight wrong and correct answers
+    var btns = document.querySelectorAll('div.question-section > button');
+    console.log(btns.length);
+    
+    for(var x=0; x<btns.length; x++){
+        if(x == answer){ btns[x].classList.add('correctButton');}
+        else{ btns[x].classList.add('incorrectButton');}
+        
+    }
+    // Countdown
+    setTimeout(function () {
+
+        for(var x=0; x<btns.length; x++){
+            if(x == answer) btns[x].classList.toggle('correctButton');
+            else btns[x].classList.toggle('incorrectButton');
+            console.log(x);
+        }
+        // Next game
+        nQuestion++;
+        if(nQuestion==6) nQuestion = 0;
+        loadNext(nQuestion);
+        clearTimeout();
+        
+    }, 2500);
 }
 
 
 /* Load question info */
-function loadNext() {
-    
+function loadNext(param) {
+    switch (param) {
+        case 0:
+            // Videogame - year
+            getVideogames();
+            break;
+        case 1:
+            // Fruits
+            getFruits();
+            break;
+        case 2:
+            // Charachters
+            getCharacters();
+            break;
+        case 3:
+            // Animals
+            getAnimals();
+            break;
+        case 4:
+            // Brands
+            getBrands();
+            break;
+        case 5:
+            // Results
+            console.log("FIN");
+            
+            break;
+        default:
+            break;
+    }
 }
 
 /* Display results */
@@ -480,7 +555,8 @@ function getVideogames() {
 function convertDate(inputFormat) {
     function pad(s) { return (s < 10) ? '0' + s : s; }
     var d = new Date(inputFormat);
-    return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+    //return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+    return d.getFullYear();
 }
 
 function getRandomInt(min, max) {
