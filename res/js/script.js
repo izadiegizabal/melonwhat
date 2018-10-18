@@ -495,7 +495,7 @@ function getVideogames() {
     fetch( fullUrl, { headers } )
     .then( body => body.json() )
     .then( json => {
-        //const { head: { vars }, results } = json;
+        const { head: { vars }, results } = json;
         for ( const result of results.bindings ) {
             //console.log(results.bindings);
             ins_for = 0;
