@@ -1,10 +1,8 @@
-<<<<<<< HEAD
-/* Global variable:s aux_data */
-var aux_data;
-=======
-/* Global variable:s videogame_ans */
+
+/* Global variable:s answer */
+
 var answer;
->>>>>>> a3f670dcf20d1f7125f6388f3e1c957e2685d833
+
 
 window.onload = function () {
     document.getElementById('txt').style.display = 'inline';
@@ -74,7 +72,7 @@ function getFruits(){
     var cont = 0;
     var ins_for=0;
 
-    aux_data = getRandomInt(0,3);
+    answer = getRandomInt(0,3);
     
     
 
@@ -126,7 +124,7 @@ function getFruits(){
                         case 2:
                             /* img */
                             /* date */
-                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
                         break;
                         default:
                             break;
@@ -154,7 +152,7 @@ function getCharacters(){
     var cont = 0;
     var ins_for=0;
 
-    aux_data = getRandomInt(0,3);
+    answer = getRandomInt(0,3);
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -206,7 +204,7 @@ function getCharacters(){
                         case 2:
                             /* img */
                             /* date */
-                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
                         break;
                         default:
                             break;
@@ -234,7 +232,7 @@ function getAnimals(){
     var cont = 0;
     var ins_for=0;
 
-    aux_data = getRandomInt(0,3);
+    answer = getRandomInt(0,3);
 
     
 
@@ -287,7 +285,7 @@ function getAnimals(){
                         case 2:
                             /* img */
                             /* date */
-                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
                         break;
                         default:
                             break;
@@ -314,7 +312,7 @@ function getBrands(){
     var cont = 0;
     var ins_for=0;
 
-    aux_data = getRandomInt(0,3);
+    answer = getRandomInt(0,3);
 
     
 
@@ -346,7 +344,7 @@ function getBrands(){
                             break;
                         case 1:
                             /* label */
-                            if(aux_data == cont) document.getElementById('txt').innerHTML = result[variable].value;
+                            if(answer == cont) document.getElementById('txt').innerHTML = result[variable].value;
                             break;
                         case 2:
                             /* img */
@@ -374,7 +372,7 @@ function getBrands(){
                             break;
                         case 4:
                             /* date */
-                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
                         break;
                         default:
                             break;
@@ -400,15 +398,8 @@ function getVideogames() {
     var cont = 0;
     var ins_for=0;
 
-<<<<<<< HEAD
-    aux_data = getRandomInt(0,3);
-
-=======
     answer = getRandomInt(0,3);
-    console.log("Respuesta correcta es: ");
-    
-    console.log(answer);
->>>>>>> a3f670dcf20d1f7125f6388f3e1c957e2685d833
+
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -441,19 +432,13 @@ function getVideogames() {
                             break;
                         case 1:
                             /* label */
-<<<<<<< HEAD
-                            if(aux_data == cont) document.getElementById('txt').innerHTML = result[variable].value;
-                            break;
-                        case 2:
-                            /* img */
-                            if(aux_data == cont) document.getElementById('ask_img').src = result[variable].value;
-=======
+
                             if(answer == cont) document.getElementById('txt').innerHTML = result[variable].value;
                             break;
                         case 2:
                             /* img */
                             if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
->>>>>>> a3f670dcf20d1f7125f6388f3e1c957e2685d833
+
 
                             break;
                         case 3:
