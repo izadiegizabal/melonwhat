@@ -3,6 +3,9 @@
 
 var answer;
 var nQuestion;
+var score = 0;
+var timer = 0;
+
 
 
 window.onload = function () {
@@ -38,16 +41,19 @@ function play(){
 
 /* Check answer */
 function checkAnswer(selected) {
-    if(answer == selected) post_actions(true);
-    else post_actions(false); 
+    if(answer == selected) {post_actions(true); score=+(10+timer);}
+    else {post_actions(false); score=-5;}
 
     nQuestion++;
+    timer = 10;
 }
 
 /* Post actions answer*/
 function post_actions(param) {
     // Adds points, green points, change color to green o
     if(nQuestion < 5){
+
+        console.log(score);
 
         var element = document.getElementsByClassName('progress')[nQuestion];
         
@@ -74,7 +80,7 @@ function post_actions(param) {
 
     // Highlight wrong and correct answers
     var btns = document.querySelectorAll('div.question-section > button');
-    console.log(btns.length);
+    //console.log(btns.length);
     
     for(var x=0; x<btns.length; x++){
         if(x == answer){ btns[x].classList.add('correctButton');}
@@ -87,7 +93,7 @@ function post_actions(param) {
         for(var x=0; x<btns.length; x++){
             if(x == answer) btns[x].classList.toggle('correctButton');
             else btns[x].classList.toggle('incorrectButton');
-            console.log(x);
+            //console.log(x);
         }
         // Next game
         nQuestion++;
@@ -566,7 +572,8 @@ function getRandomInt(min, max) {
 
 /* Timer countdown */
 function startTimer(duration, display) {
-    var timer = duration,seconds;
+    timer = duration;
+    var seconds;
     setInterval(function () {
 
         seconds = parseInt(timer % 60, 10);
@@ -576,6 +583,7 @@ function startTimer(duration, display) {
 
         if (--timer < 0) {
             timer = duration;
+            checkAnswer(4);
         }
     }, 1000);
 }
