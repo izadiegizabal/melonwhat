@@ -15,6 +15,9 @@ window.onload = function () {
     // Hide punctuation card
     document.getElementById('results').style.display = 'none';
     document.getElementById('txt').style.display = 'inline';
+
+    //Change melonfact
+    changeMelonFact();
 }
 
 
@@ -567,6 +570,57 @@ function convertDate(inputFormat) {
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/* Random melon facts */
+function changeMelonFact(){
+    const melonfacts = [
+        "Size of melon depends on the variety. Largest recorded watermelon had 262 pounds of weight. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Melon grows as vine. It has round stem that produces lateral tendrils. Green leaves are oval or circular in shape. They have shallow lobes. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Melon produces two types of flowers: staminate (contains only male reproductive organs) and perfect flowers (contains both male and female reproductive organs). Plant that produces these types of flowers is called andromonoecious. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Size, shape, color, sweetness and texture of the fruit depend on the type of melon. Skin can be either smooth or rough. Color of the skin can be green, yellow, orange, creamy or kaki. Sweetness of the fruit depends on the climate conditions and intensity of photosynthesis (production of sugar from the carbon dioxide and water, with a help of sun). <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Seeds are located in the middle of the fruit. They are usually 0.4 inches long, creamy in color and oval in shape. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Watermelons were very popular in the Roman Empire and in the ancient Egypt. Certain rulers, such as Tutankhamen, were even buried with the seeds of watermelons. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Best known varieties of melon are casaba, honeydew, Persian melon and cantaloupe. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Melons have high nutritional value. They are rich source of vitamin C, vitamins of the B group, and minerals such as potassium, manganese, iron and phosphorus. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Watermelon contains more than 92% of water, hence the name. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Melons are usually consumed raw. They can be served as a part of fruit salads, refreshing juices or in the sweet desserts. Some types of melons are used as vegetable when they are not fully ripe, and as fruit when the sugar content reach its maximum level (fully ripe melon). <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Roasted and dried seeds are used as snack in the African and Indian culture. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Almost all parts of melon (fruit, seed, leaves and roots) are used in traditional Chinese medicine. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Scientists created cube-shaped melon. Packaging and transportation of this type of melon requires less effort compared to rounded types of melon. Cube-shaped melon is far more expensive than conventional melons. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "25% of globally consumed melons originate from China. It produces over 8 million tons of melons each year. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Melon is annual plant, which means that it finishes its life cycle in one year. <a href='http://www.softschools.com/facts/plants/melon_facts/609/'>Source</a>.",
+        "Melon is a member of the Cucurbitaceae family. Its closest relatives are squashes and cucumbers. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Melons originate from Africa and southwestern parts of Asia. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "After they become widely spread and popular in Europe, melons were introduced to America by the Spanish settlers during the 15th and 16th century. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Melon is annual plant, which means that it finishes its life cycle in one year. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Melon produces two types of flowers: staminate (contains only male reproductive organs) and perfect flowers (contains both male and female reproductive organs). Plant that produces these types of flowers is called andromonoecious. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Seeds are located in the middle of the fruit. They are usually 0.4 inches long, creamy in color and oval in shape. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Size, shape, color, sweetness and texture of the fruit depend on the type of melon. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Best known varieties of melon are casaba, honeydew, Persian melon and cantaloupe. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Melon grows as vine. It has round stem that produces lateral tendrils. Green leaves are oval or circular in shape. They have shallow lobes. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "It takes cantaloupes 3-4 months to grow before they are mature enough to be picked. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Melons have high nutritional value. They are rich source of vitamin C, vitamin A, vitamins of the B group, and minerals such as manganese, iron and phosphorus. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "They are also rich in potassium, a nutrient that may help control blood pressure, regulate heart beat, and possibly prevent strokes. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Melons offer a decent dose of fiber, which helps fill you up. As a snack for dieters, melons can’t be beat. Their juicy sweetness is just the substitute for high-calorie snacks and desserts. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "The Yubari King melons are the most expensive melons in the world. They are only grown in a small region of Japan. Due to this they are very hard to find making them very expensive.The fruit is said to be the juiciest and sweetest melon in the world, and its orange flesh is coveted for its tenderness.Often given as gifts after being bought at auctions, a perfectly proportioned pair of these juicy melons can easily set you back well over $20,000. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Melons are symbol of fertility and vitality, but also of luxury because they were expensive and scarce in the past. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "25% of globally consumed melons originate from China. It produces over 8 million tons of melons each year. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Melons does not ripen after it is picked, so once a cantaloupe is removed from the vine it will not sweeten any further. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Almost all parts of melon (fruit, seed, leaves and roots) are used in traditional Chinese medicine. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Roasted and dried (melon) seeds are used as snack in the African and Indian culture. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Ancient Egyptians have been cultivated melons 2000 years BC. <a href='http://justfunfacts.com/interesting-facts-about-melons/'>Source</a>.",
+        "Watermelons have remained popular for thousands of years. Pictures of them can even be seen in ancient Egyptian hieroglyphics. <a href='https://www.aarp.org/food/diet-nutrition/info-2017/melons-food-fact-trivia.html'>Source</a>.",
+        "Stainless steel and plastic water bottles are all the rage now, but early explorers used watermelons as canteens. <a href='https://www.aarp.org/food/diet-nutrition/info-2017/melons-food-fact-trivia.html'>Source</a>.",
+        "The cantaloupe was first cultivated in the 1700s, in the Italian papal village of Cantalup. <a href='https://www.aarp.org/food/diet-nutrition/info-2017/melons-food-fact-trivia.html'>Source</a>.",
+        "To pick the perfect watermelon, experts recommend flipping it over to make sure that the underside has a creamy yellow spot from sitting on the ground to ripen in the sun. <a href='https://www.aarp.org/food/diet-nutrition/info-2017/melons-food-fact-trivia.html'>Source</a>.",
+        "We typically picture the flesh of a honeydew melon as green, but there is also an orange variety, aka the temptation melon. <a href='https://www.aarp.org/food/diet-nutrition/info-2017/melons-food-fact-trivia.html'>Source</a>.",
+        ""
+    ];
+
+    let ranFactNum = Math.floor(Math.random() * (melonfacts.length + 1));
+
+    document.getElementById('melonfact').innerHTML = melonfacts[ranFactNum];
 }
 
 

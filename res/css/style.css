@@ -17,7 +17,7 @@ html {
 
 .mdl-mini-footer {
     background-color: #262626;
-    height: 50px;
+    height: 35px;
     padding: 15px;
 }
 
@@ -90,6 +90,11 @@ html {
     line-height: 2rem;
     width: 100%;
     text-align: center;
+}
+
+.randomfact a {
+    font-size: 0.8rem;
+    color: black;
 }
 
 .card-img {
