@@ -46,7 +46,7 @@ function play(){
 /* Check answer */
 function checkAnswer(selected) {
     if(answer == selected) {post_actions(true, selected); score=+(10+timer);}
-    else post_actions(false, selected); 
+    else {post_actions(false, selected); score=+5;}
     timer = 10;
 }
 
@@ -70,7 +70,7 @@ function post_actions(param, selected) {
             case false:
                 // Wrong answer
                 dots.classList.add('wrong');
-                btns[selected].classList.add('incorrectButton');
+                btns[selected].classList.add('incorrectButton'); //?????????????
                 break;
             default:
                 break;
@@ -94,6 +94,7 @@ function post_actions(param, selected) {
         }
         // Next game
         nQuestion++;
+        console.log('---------'+nQuestion+'-------');
         if(nQuestion==7) nQuestion = 0;
         loadNext(nQuestion);
         clearTimeout();
@@ -145,9 +146,9 @@ function loadNext(param) {
 /* Display results */
 function displayResults() {
     console.log("OYE");
-    
-    document.getElementById('game').classList.add('hide');
-    document.getElementById('results').classList.add('unhide');
+
+    document.getElementById('results').style.display = 'flex';
+    document.getElementById('game').style.display = 'none';
 
 }
 
