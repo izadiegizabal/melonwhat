@@ -49,8 +49,19 @@ html {
     min-width: 100%;
 }
 
+.totalScore {
+    color: black;
+    font-size: 1.25rem !important;
+}
+
 .mdl-card__title-text {
     font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 2rem;
+}
+
+.pointCategory {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 1.2rem;
 }
 
 .randomfact {
