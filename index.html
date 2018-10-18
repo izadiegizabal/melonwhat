@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-pink.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:700i|IBM+Plex+Sans:300i|IBM+Plex+Sans+Condensed:500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:700i|IBM+Plex+Sans:300i|IBM+Plex+Sans+Condensed:500"
+          rel="stylesheet">
     <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/twotone.css">
     <link rel="stylesheet" href="res/css/style.css"/>
 </head>
@@ -15,20 +16,22 @@
 <!-- Always shows a header, even in smaller screens. -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
+        <a href=".">
         <div class="mdl-layout__header-row">
             <img src="res/img/icon.svg"/>
-            <span class="mdl-layout-title">Melon What?</span>
-            <span class="mdl-layout-title mdl-layout-title-mobile">MW?</span>
+                <span class="mdl-layout-title">Melon What?</span>
+                <span class="mdl-layout-title mdl-layout-title-mobile">MW?</span>
         </div>
+        </a>
     </header>
     <main class="mdl-layout__content">
         <div class="page-content">
             <div class="mdl-grid">
-
                 <br>
 
+                <!-- INITIAL CARD -->
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--3-offset-desktop mdl-cell--6-col-desktop">
-                    <div class="main-card mdl-card mdl-shadow--2dp">
+                    <div id="top" class="main-card mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
                             <h2 class="mdl-card__title-text">Welcome!</h2>
                         </div>
@@ -40,42 +43,54 @@
                             <br>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <a onclick="play()"
+                               class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                 Melon What?
                             </a>
                         </div>
                         <div class="mdl-card__menu">
-                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" onclick="location.href='https://github.com/izadiegizabal/melonwhat'">
+                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+                                    onclick="location.href='https://github.com/izadiegizabal/melonwhat'">
                                 <i class="material-icons-new twotone-code"></i>
                             </button>
                         </div>
                     </div>
 
-                    <br>
 
-                    <div class="main-card mdl-card mdl-shadow--2dp">
+                    <!-- GAME CARD -->
+                    <div id="game" class="hide main-card mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
-
                         </div>
                         <div class="mdl-card__supporting-text">
                             <div class="mdl-grid">
-                                <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop">
-                                    <img id="ask_img" class="card-img" src="https://snaped.fns.usda.gov/sites/default/files/styles/crop_ratio_7_5/public/seasonal-produce/2018-05/watermelon.jpg?itok=6EdNOdUo">
-                                    <span id="txt" class="randomfact">Watermelon</span>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <img id="ask_img" class="card-img"
+                                         src="https://snaped.fns.usda.gov/sites/default/files/styles/crop_ratio_7_5/public/seasonal-produce/2018-05/watermelon.jpg?itok=6EdNOdUo">
                                 </div>
+<<<<<<< HEAD
                                 <div class="question-section mdl-cell mdl-cell--12-col mdl-cell--8-col-desktop">
                                     <span class="mdl-card__title-text" id="question">Witch is the correct size?</span>
+=======
+                                <span id="txt" class="randomfact">Watermelon</span>
+                                <div class="mdl-cell mdl-cell--12-col"></div>
+                                <div class="question-section mdl-cell mdl-cell--12-col">
+                                    <span id="question" class="mdl-card__title-text">Witch is the correct size?</span>
+>>>>>>> a3f670dcf20d1f7125f6388f3e1c957e2685d833
                                     <br>
-                                    <button id="ans0" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans0" onclick="checkAnswer(0)"
+                                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.5m
                                     </button>
-                                    <button id="ans1" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans1" onclick="checkAnswer(1)"
+                                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.25m
                                     </button>
-                                    <button id="ans2" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans2" onclick="checkAnswer(2)"
+                                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.05m
                                     </button>
-                                    <button id="ans3" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans3" onclick="checkAnswer(3)"
+                                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         1m
                                     </button>
                                 </div>
@@ -89,7 +104,56 @@
                             <span class="progress mdl-shadow--4dp material-icons-new"></span>
                         </div>
                         <div class="mdl-card__menu">
-                            <span class="mdl-card__title-text">10s</span>
+                            <span id="time" class="mdl-card__title-text">10s</span>
+                        </div>
+                    </div>
+
+
+                    <!-- SCORES CARD -->
+                    <div id="results" class="hide main-card mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <div class="mdl-layout-spacer"></div>
+                            <i class="material-icons-new twotone-star"></i> <span class="mdl-card__title-text">&nbsp; &nbsp; Total Score</span>
+                            <div class="mdl-layout-spacer"></div>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--3-col mdl-cell--7-col-tablet mdl-cell--11-col-desktop">
+                                    <span class="pointCategory">Correct</span>
+                                    <span>&nbsp; 3/5</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--1-col">
+                                    <span>+30</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--3-col mdl-cell--7-col-tablet mdl-cell--11-col-desktop">
+                                    <span class="pointCategory">Incorrect</span>
+                                    <span>&nbsp; 2/5</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--1-col">
+                                    <span>-10</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--3-col mdl-cell--7-col-tablet mdl-cell--11-col-desktop">
+                                    <span class="pointCategory">Time Bonus</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--1-col">
+                                    <span>+14</span>
+                                </div>
+
+                                <div class="mdl-cell mdl-cell--3-col">
+                                </div>
+
+                                <div class="mdl-cell mdl-cell--3-col mdl-cell--7-col-tablet mdl-cell--11-col-desktop">
+                                    <span class="pointCategory totalScore">Total</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--1-col">
+                                    <span class="totalScore">40</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                Start Over
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +163,7 @@
     <footer class="mdl-mini-footer">
         <div class="mdl-layout-spacer"></div>
         <div class="mdl-mini-footer__left-section">
-            <div class="mdl-logo">By Watermelon Corp. 🍉  © 2018</div>
+            <div class="mdl-logo">By Watermelon Corp. 🍉 © 2018</div>
         </div>
     </footer>
 </div>

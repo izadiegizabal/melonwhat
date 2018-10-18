@@ -21,7 +21,11 @@ html {
 .mdl-layout__header-row {
     padding-top: 50px;
     padding-bottom: 50px;
+}
 
+.mdl-layout__header a {
+    color: white;
+    text-decoration: none !important;
 }
 
 .mdl-layout__header-row {
@@ -49,8 +53,19 @@ html {
     min-width: 100%;
 }
 
+.totalScore {
+    color: black;
+    font-size: 1.25rem !important;
+}
+
 .mdl-card__title-text {
     font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 2rem;
+}
+
+.pointCategory {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-size: 1.2rem;
 }
 
 .randomfact {
@@ -59,12 +74,19 @@ html {
     font-style: italic;
     font-size: 1.5rem;
     line-height: 2rem;
+    width: 100%;
+    text-align: center;
 }
 
 .card-img {
     height: 250px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+}
+
+.question-section {
+    width: 100%;
+    text-align: center;
 }
 
 .question-section button {
@@ -85,6 +107,16 @@ html {
 
 .mdl-layout-title-mobile {
     display: none;
+}
+
+.incorrectButton {
+    transition: background-color 0.3s ease-in;
+    background-color: #EF5350 !important;
+}
+
+.correctButton {
+    transition: background-color 0.3s ease-in;
+    background-color: #66BB6A !important;
 }
 
 
@@ -115,4 +147,13 @@ html {
     -moz-filter: contrast(4) invert(1);
     -o-filter: contrast(4) invert(1);
     filter: contrast(4) invert(1);
+}
+
+
+.hide {
+    display: none;
+}
+
+.unhide {
+    display: inherit;
 }
