@@ -1,0 +1,458 @@
+
+
+window.onload = function () {
+
+    getVideogames();
+
+}
+
+
+
+/* Play game */
+function play(){
+
+}
+
+/* Check answer */
+function checkAnswer() {
+    
+}
+
+/* Load question info */
+function loadNext() {
+    
+}
+
+/* Display results */
+function displayResults() {
+    
+}
+
+/* Load WikiData query */
+function loadData() {
+    
+}
+
+function getFruits(){
+
+    rnd_ans0 = getRandomInt(0,3);
+    rnd_ans1 = getRandomInt(0,3);
+    rnd_ans2 = getRandomInt(0,3);
+    rnd_ans3 = getRandomInt(0,3);
+
+    const endpointUrl = 'https://query.wikidata.org/sparql',
+      sparqlQuery = `SELECT ?fruit ?fruitLabel ?image WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  ?fruit wdt:P279 wd:Q3314483.
+  ?fruit wdt:P18 ?image. 
+    }
+    ORDER BY ?subclass_of OFFSET 70
+    `,
+        fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
+        headers = { 'Accept': 'application/sparql-results+json' };
+    var cont = 0;
+    fetch( fullUrl, { headers } )
+        .then( body => body.json() )
+        .then( json => {
+            const { head: { vars }, results } = json;
+            for ( const result of results.bindings ) {
+                for ( const variable of vars ) {
+                    console.log( '%s: %o', variable, result[variable] );
+                }
+                console.log( '---' );
+                console.log(cont);
+
+                switch(cont){
+                    case rnd_ans0:
+
+                    case rnd_ans1:
+                    
+                    case rnd_ans2:
+                    
+                    case rnd_ans3:
+                }
+
+                cont++;
+                
+        }
+    } );
+
+}
+
+function getVideogames() {
+
+    var cont = 0;
+    var ins_for=0;
+
+    var ans_correct = new Object();
+
+    var arr_fake = new Array();
+
+    var ans1=0, ans2=0, ans3=0;
+    var correct = getRandomInt(0,3);
+    console.log("Num correcta: " + correct);
+    
+
+    const endpointUrl = 'https://query.wikidata.org/sparql',
+      sparqlQuery = `SELECT DISTINCT ?video_game ?video_gameLabel ?image (MIN(?publication_date) AS ?publication_date_antigua) (MD5(CONCAT(str(?video_game),str(RAND()))) as ?random) WHERE{
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    ?video_game wdt:P31 wd:Q7889.
+    ?video_game rdfs:label ?video_gameLabel.
+    ?video_game wdt:P18 ?image.
+    ?video_game wdt:P577 ?publication_date.
+    
+    }
+    GROUP BY ?video_game ?video_gameLabel ?image
+    ORDER BY ?random
+    LIMIT 4`,
+        fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
+        headers = { 'Accept': 'application/sparql-results+json' };
+
+    fetch( fullUrl, { headers } )
+    .then( body => body.json() )
+    .then( json => {
+        const { head: { vars }, results } = json;
+        for ( const result of results.bindings ) {
+            
+            ins_for = 0;
+            for ( const variable of vars ) {
+                //console.log( '%s: %o', variable, result[variable] );
+                if( correct == cont ){
+                    /* Is the correct answer */
+                    switch (ins_for) {
+                        case 0:
+                            /* wd */
+                            break;
+                        case 1:
+                            /* label */
+                            ans_correct.name = result[variable].value;
+                            break;
+                        case 2:
+                            /* img */
+                            ans_correct.img = result[variable].value;
+                            break;
+                        case 3:
+                            /* date */
+                            ans_correct.date = result[variable].value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else{
+                    
+                    if(ins_for==0) var ans_fake = new Object();
+                    switch (ins_for) {
+                        case 0:
+                            /* wd */
+                            break;
+                        case 1:
+                            /* label */
+                            ans_fake.name = result[variable].value;
+                            break;
+                        case 2:
+                            /* img */
+                            ans_fake.img = result[variable].value;
+                            break;
+                        case 3:
+                            /* date */
+                            ans_fake.date = result[variable].value;
+                            break;
+                        default:
+                            break;
+                    }
+                    if(ins_for==0) arr_fake.push(ans_fake);
+                }
+                ins_for++;
+                console.log(ins_for);
+                
+            }
+            cont++;
+            console.log( '---' );
+
+        }
+        console.log(ans_correct);
+        console.log(arr_fake);
+        
+    } );
+
+    
+    
+
+}
+
+function updateElements(img, ans1, ans2, ans3, ans4){
+    document.getElementById('ask_img').src = img;
+    document.getElementById('ans1').innerHTML = ans1;
+    document.getElementById('ans2').innerHTML = ans2;
+    document.getElementById('ans3').innerHTML = ans3;
+
+}
+
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+/* Timer countdown */
+/* 
+    <div id="timer"><span id="time">10</span> seconds!</div>
+ 
+function startTimer(duration, display) {
+    var timer = duration,seconds;
+    setInterval(function () {
+
+        seconds = parseInt(timer % 60, 10);
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var t_seconds = 10,
+        display = document.querySelector('#time');
+    startTimer(t_seconds, display);
+    console.log("ye");
+    
+};
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+fdjasnfjkdfds
+fdjasnfjkdfdsfdsaf
+
+fdjasnfjkdfds
+fdjasnfjkdfds
+
+
+
+
+/* Global variable:s videogame_ans */
+var videogame_ans;
+var videogame_ans_arr;
+
+window.onload = function () {
+    console.log("Get videogames");
+    
+    getVideogames();
+
+}
+
+
+
+/* Play game */
+function play(){
+
+}
+
+/* Check answer */
+function checkAnswer() {
+    
+}
+
+/* Load question info */
+function loadNext() {
+    
+}
+
+/* Display results */
+function displayResults() {
+    
+}
+
+/* Load WikiData query */
+function loadData() {
+    
+}
+
+function getFruits(){
+
+    rnd_ans0 = getRandomInt(0,3);
+    rnd_ans1 = getRandomInt(0,3);
+    rnd_ans2 = getRandomInt(0,3);
+    rnd_ans3 = getRandomInt(0,3);
+
+    const endpointUrl = 'https://query.wikidata.org/sparql',
+      sparqlQuery = `SELECT ?fruit ?fruitLabel ?image WHERE {
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  ?fruit wdt:P279 wd:Q3314483.
+  ?fruit wdt:P18 ?image. 
+    }
+    ORDER BY ?subclass_of OFFSET 70
+    `,
+        fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
+        headers = { 'Accept': 'application/sparql-results+json' };
+    var cont = 0;
+    fetch( fullUrl, { headers } )
+        .then( body => body.json() )
+        .then( json => {
+            const { head: { vars }, results } = json;
+            for ( const result of results.bindings ) {
+                for ( const variable of vars ) {
+                    console.log( '%s: %o', variable, result[variable] );
+                }
+                console.log( '---' );
+                console.log(cont);
+
+                switch(cont){
+                    case rnd_ans0:
+
+                    case rnd_ans1:
+                    
+                    case rnd_ans2:
+                    
+                    case rnd_ans3:
+                }
+
+                cont++;
+                
+        }
+    } );
+
+}
+
+function getVideogames() {
+
+    /* Counters */
+    var cont = 0;
+    var ins_for=0;
+
+    /* Array stores CLEAN data */
+    var array = new Array();
+
+    const endpointUrl = 'https://query.wikidata.org/sparql',
+      sparqlQuery = `SELECT DISTINCT ?video_game ?video_gameLabel ?image (MIN(?publication_date) AS ?publication_date_antigua) (MD5(CONCAT(str(?video_game),str(RAND()))) as ?random) WHERE{
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    ?video_game wdt:P31 wd:Q7889.
+    ?video_game rdfs:label ?video_gameLabel.
+    ?video_game wdt:P18 ?image.
+    ?video_game wdt:P577 ?publication_date.
+    
+    }
+    GROUP BY ?video_game ?video_gameLabel ?image
+    ORDER BY ?random
+    LIMIT 4`,
+        fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
+        headers = { 'Accept': 'application/sparql-results+json' };
+
+    fetch( fullUrl, { headers } )
+    .then( body => body.json() )
+    .then( json => {
+        const { head: { vars }, results } = json;
+        for ( const result of results.bindings ) {
+            console.log(results.bindings);
+            
+            ins_for = 0;
+            for ( const variable of vars ) {
+                console.log( '%s: %o', variable, result[variable] );
+                if(ins_for == 0) var ans = new Object();    
+                switch (ins_for) {
+                        case 0:
+                            /* wd */
+                            break;
+                        case 1:
+                            /* label */
+                            ans.name = result[variable].value;
+                            break;
+                        case 2:
+                            /* img */
+                            ans.img = result[variable].value;
+                            break;
+                        case 3:
+                            /* date */
+                            ans.date = result[variable].value;
+                            break;
+                        default:
+                            break;
+                    }
+                ins_for++;
+                if(ins_for == 4) array.push(ans);
+                console.log(ins_for);
+                
+            }
+            cont++;
+            console.log( '---' );
+
+        }
+        //console.log(array);
+        
+    } );
+    console.log("yeee");
+
+    console.log(array.bindings);
+/*
+    videogame_ans = getRandomInt(0,3);
+    videogame_ans_arr = array;
+    console.log("Numero correcto: ");
+    
+    console.log(videogame_ans);
+    console.log("--");
+    
+    console.log("Accediendo a pos " + videogame_ans + " de: " );
+    
+    console.log(array[videogame_ans]);
+
+    */
+    
+    updateElements(array[videogame_ans].img, array[0].date, array[1].date, array[2].date, array[3].date);
+
+}
+
+function updateElements(img, ans1, ans2, ans3, ans4){
+    document.getElementById('ask_img').src = img;
+    document.getElementById('ans1').innerHTML = ans1;
+    document.getElementById('ans2').innerHTML = ans2;
+    document.getElementById('ans3').innerHTML = ans3;
+
+}
+
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+/* Timer countdown */
+/* 
+    <div id="timer"><span id="time">10</span> seconds!</div>
+ 
+function startTimer(duration, display) {
+    var timer = duration,seconds;
+    setInterval(function () {
+
+        seconds = parseInt(timer % 60, 10);
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var t_seconds = 10,
+        display = document.querySelector('#time');
+    startTimer(t_seconds, display);
+    console.log("ye");
+    
+};
+*/
