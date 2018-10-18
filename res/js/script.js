@@ -2,14 +2,6 @@
 var answer;
 
 window.onload = function () {
-    /* Main state: */
-    // Hide game card
-    document.getElementById('game').style.display = 'none';
-    // Hide punctuation card
-    document.getElementById('results').style.display = 'none';
-
-
-
     console.log("Get videogames");
     
     getVideogames();

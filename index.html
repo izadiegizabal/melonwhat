@@ -16,11 +16,13 @@
 <!-- Always shows a header, even in smaller screens. -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
+        <a href=".">
         <div class="mdl-layout__header-row">
             <img src="res/img/icon.svg"/>
-            <span class="mdl-layout-title">Melon What?</span>
-            <span class="mdl-layout-title mdl-layout-title-mobile">MW?</span>
+                <span class="mdl-layout-title">Melon What?</span>
+                <span class="mdl-layout-title mdl-layout-title-mobile">MW?</span>
         </div>
+        </a>
     </header>
     <main class="mdl-layout__content">
         <div class="page-content">
@@ -41,7 +43,8 @@
                             <br>
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a onclick="play()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <a onclick="play()"
+                               class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                 Melon What?
                             </a>
                         </div>
@@ -55,29 +58,34 @@
 
 
                     <!-- GAME CARD -->
-                    <div id="game" class="main-card mdl-card mdl-shadow--2dp">
+                    <div id="game" class="hide main-card mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
                         </div>
                         <div class="mdl-card__supporting-text">
                             <div class="mdl-grid">
                                 <div class="mdl-cell mdl-cell--12-col">
-                                    <img id="ask_img" class="card-img" src="https://snaped.fns.usda.gov/sites/default/files/styles/crop_ratio_7_5/public/seasonal-produce/2018-05/watermelon.jpg?itok=6EdNOdUo">
+                                    <img id="ask_img" class="card-img"
+                                         src="https://snaped.fns.usda.gov/sites/default/files/styles/crop_ratio_7_5/public/seasonal-produce/2018-05/watermelon.jpg?itok=6EdNOdUo">
                                 </div>
                                 <span id="txt" class="randomfact">Watermelon</span>
                                 <div class="mdl-cell mdl-cell--12-col"></div>
                                 <div class="question-section mdl-cell mdl-cell--12-col">
                                     <span id="question" class="mdl-card__title-text">Witch is the correct size?</span>
                                     <br>
-                                    <button id="ans0" onclick="checkAnswer(0)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans0" onclick="checkAnswer(0)"
+                                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.5m
                                     </button>
-                                    <button id="ans1" onclick="checkAnswer(1)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans1" onclick="checkAnswer(1)"
+                                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.25m
                                     </button>
-                                    <button id="ans2" onclick="checkAnswer(2)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans2" onclick="checkAnswer(2)"
+                                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         0.05m
                                     </button>
-                                    <button id="ans3" onclick="checkAnswer(3)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                                    <button id="ans3" onclick="checkAnswer(3)"
+                                            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                                         1m
                                     </button>
                                 </div>
@@ -97,7 +105,7 @@
 
 
                     <!-- SCORES CARD -->
-                    <div id="results" class="main-card mdl-card mdl-shadow--2dp">
+                    <div id="results" class="hide main-card mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
                             <div class="mdl-layout-spacer"></div>
                             <i class="material-icons-new twotone-star"></i> <span class="mdl-card__title-text">&nbsp; &nbsp; Total Score</span>

@@ -21,7 +21,11 @@ html {
 .mdl-layout__header-row {
     padding-top: 50px;
     padding-bottom: 50px;
+}
 
+.mdl-layout__header a {
+    color: white;
+    text-decoration: none !important;
 }
 
 .mdl-layout__header-row {
