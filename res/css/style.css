@@ -32,6 +32,10 @@ html {
     margin-left: -50px;
 }
 
+.mdl-layout__header-row img{
+    height: 150px;
+}
+
 .mdl-layout-title{
     margin-left: -15px;
     font-family: "IBM Plex Sans", sans-serif;
