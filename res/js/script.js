@@ -26,6 +26,7 @@ window.onload = function () {
 function play(){
     document.getElementById('game').style.display = 'flex';
     document.getElementById('top').style.display = 'none';
+    //document.getElementById('results').classList.toggle('unhide');
 
     // Start timer
     var t_seconds = 10, display = document.querySelector('#time');
@@ -44,63 +45,56 @@ function play(){
 
 /* Check answer */
 function checkAnswer(selected) {
-    if(answer == selected) {post_actions(true); score=+(10+timer);}
-    else {post_actions(false); score=-5;}
-
-    nQuestion++;
+    if(answer == selected) {post_actions(true, selected); score=+(10+timer);}
+    else post_actions(false, selected); 
     timer = 10;
 }
 
 /* Post actions answer*/
-function post_actions(param) {
+function post_actions(param, selected) {
     // Adds points, green points, change color to green o
+    console.log("post_actions -> nQuestion: " + nQuestion);
+    
     if(nQuestion < 5){
-
-        console.log(score);
-
-        var element = document.getElementsByClassName('progress')[nQuestion];
+        // Dots corrects/incorres
+        var dots = document.getElementsByClassName('progress')[nQuestion];
         
+        // Answers buttons
+        var btns = document.querySelectorAll('div.question-section > button');
+
         switch(param){
             case true:
                 // Correct answer
-                element.classList.add('correct');
+                dots.classList.add('correct');
                 break;
             case false:
                 // Wrong answer
-                element.classList.add('wrong');
+                dots.classList.add('wrong');
+                btns[selected].classList.add('incorrectButton');
                 break;
             default:
                 break;
         }
 
-    }
+        btns[answer].classList.add('correctButton');
 
-    ////////////
-    ////////////
-    // LINE 70 ERROR IDKFWHY
-    ////////////
-    ////////////
+        // Highlight wrong and correct answers
+        var btns = document.getElementsByClassName('correctButton');
+        var btns2 = document.getElementsByClassName('incorrectButton');
 
-    // Highlight wrong and correct answers
-    var btns = document.querySelectorAll('div.question-section > button');
-    //console.log(btns.length);
-    
-    for(var x=0; x<btns.length; x++){
-        if(x == answer){ btns[x].classList.add('correctButton');}
-        else{ btns[x].classList.add('incorrectButton');}
-        
     }
     // Countdown
     setTimeout(function () {
 
         for(var x=0; x<btns.length; x++){
-            if(x == answer) btns[x].classList.toggle('correctButton');
-            else btns[x].classList.toggle('incorrectButton');
-            //console.log(x);
+            btns[x].classList.toggle('correctButton');
+        }
+        for(var x=0; x<btns2.length; x++){
+            btns2[x].classList.toggle('incorrectButton');
         }
         // Next game
         nQuestion++;
-        if(nQuestion==6) nQuestion = 0;
+        if(nQuestion==7) nQuestion = 0;
         loadNext(nQuestion);
         clearTimeout();
         
@@ -110,6 +104,8 @@ function post_actions(param) {
 
 /* Load question info */
 function loadNext(param) {
+
+
     switch (param) {
         case 0:
             // Videogame - year
@@ -134,16 +130,25 @@ function loadNext(param) {
         case 5:
             // Results
             console.log("FIN");
+            displayResults();
             
             break;
         default:
             break;
     }
+
+
+    console.log("Respuesta: " + answer);
+    console.log("nQues: " + nQuestion);
 }
 
 /* Display results */
 function displayResults() {
+    console.log("OYE");
     
+    document.getElementById('game').classList.add('hide');
+    document.getElementById('results').classList.add('unhide');
+
 }
 
 
