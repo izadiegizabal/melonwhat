@@ -134,3 +134,12 @@ html {
     -o-filter: contrast(4) invert(1);
     filter: contrast(4) invert(1);
 }
+
+
+.hide {
+    display: none;
+}
+
+.unhide {
+    display: inherit;
+}
