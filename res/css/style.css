@@ -160,6 +160,25 @@ html {
     }
 }
 
+.melonfact {
+    animation: 0.3s ease-in-out 0s 1 slideInFromLeft;
+}
+
+.slideInCardFromLeft {
+    animation: 0.5s ease-in-out 0s 1 slideInFromLeft;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-25%);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* FOR MATERIAL ICONS TWOTONE */
 .material-icons-new {
     display: inline-block;
