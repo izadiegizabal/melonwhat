@@ -7,6 +7,7 @@ var timer = 0;
 var mucho_nice = 0;
 var wrong = 0;
 var bonus = 0;
+var ans = new Array();
 
 
 
@@ -23,7 +24,32 @@ window.onload = function () {
 }
 
 
+function loadall(){
+    document.getElementById('game').style.display = 'flex';
+    document.getElementById('top').style.display = 'none';
+    //document.getElementById('results').classList.toggle('unhide');
 
+
+
+
+
+
+
+
+    // Start timer
+    var t_seconds = 10, display = document.querySelector('#time');
+    startTimer(t_seconds, display);
+
+    // Initialize variables
+    nQuestion = 0;
+
+    loadNext(nQuestion);
+
+    //console.log("Get videogames");
+    //getVideogames();
+
+
+}
 /* Play game */
 function play(){
     document.getElementById('game').style.display = 'flex';
@@ -412,6 +438,7 @@ function getBrands(){
     var ins_for=0;
 
     answer = getRandomInt(0,3);
+    var aux_answer = new Array();
 
     
 
@@ -443,7 +470,8 @@ function getBrands(){
                             break;
                         case 1:
                             /* label */
-                            if(answer == cont) document.getElementById('txt').innerHTML = result[variable].value;
+                            if(answer == cont) {document.getElementById('txt').innerHTML = result[variable].value;
+                            aux_answer.splice(5, 0, result[variable].value);}
                             break;
                         case 2:
                             /* img */
@@ -455,23 +483,27 @@ function getBrands(){
                             format = result[variable].value;
                             switch(cont){
                                 case 0:
-                                    
+                                    aux_answer.splice(1, 0, format);
                                     document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
+                                    aux_answer.splice(2, 0, format);
                                     document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
+                                aux_answer.splice(3, 0, format);
                                     document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
+                                aux_answer.splice(4, 0, format);
                                     document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
                             break;
                         case 4:
                             /* date */
-                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                            aux_answer.splice(0, 0, result[variable].value);}
                         break;
                         default:
                             break;
@@ -486,6 +518,8 @@ function getBrands(){
         }
         
     } );
+    ans.push(aux_answer);
+    console.log(ans);
 
 }
 
@@ -498,7 +532,7 @@ function getVideogames() {
     var ins_for=0;
 
     answer = getRandomInt(0,3);
-
+    var aux_answer = new Array();
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -532,29 +566,42 @@ function getVideogames() {
                         case 1:
                             /* label */
 
-                            if(answer == cont) document.getElementById('txt').innerHTML = result[variable].value;
+                            if(answer == cont) {document.getElementById('txt').innerHTML = result[variable].value;
+                                aux_answer.splice(5, 0, result[variable].value);
+                                //console.log(aux_answer);
+                            }
                             break;
                         case 2:
                             /* img */
-                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
 
+                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                            aux_answer.splice(0, 0, result[variable].value);
+                                //console.log(aux_answer);
+                            }
 
                             break;
                         case 3:
                             /* date */
-                            format = convertDate(result[variable].value)
+                            format = convertDate(result[variable].value);
                             switch(cont){
                                 case 0:
-                                    
+                                    aux_answer.splice(1, 0, format);
+                                //console.log(aux_answer);
                                     document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
+                                aux_answer.splice(2, 0, format);
+                                //console.log(aux_answer);
                                     document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
+                                aux_answer.splice(3, 0, format);
+                                //console.log(aux_answer);
                                     document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
+                                aux_answer.splice(4, 0, format);
+                                //console.log(aux_answer);
                                     document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
@@ -572,6 +619,9 @@ function getVideogames() {
         }
         
     } );
+
+    ans.push(aux_answer);
+    console.log(ans);
     
 
 }
