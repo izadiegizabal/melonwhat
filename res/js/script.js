@@ -87,7 +87,7 @@ function loadall(){
         // Initialize variables
         nQuestion = 0;
         loadNext(nQuestion);
-    }, 1000);
+    }, 3000);
     //console.log("Get videogames");
     //getVideogames();
 }
