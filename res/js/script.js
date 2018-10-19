@@ -73,61 +73,107 @@ function play(){
 
 /* Check answer */
 function checkAnswer(selected) {
-    if(answer == selected) {mucho_nice+=10; bonus+=timer; post_actions(true, selected); }
-    else {wrong-=5; post_actions(false, selected);}
+    if(answer == selected) { 
+        mucho_nice+=10; 
+        bonus+=timer; 
+        post_actions(true, selected);
+    }
+    else if(selected == null){
+        wrong-=5;
+        post_actions( null, selected);
+    }
+    else{
+        wrong-=5;
+        post_actions(false, selected); 
+    }
     timer = 10;
 }
 
 /* Post actions answer*/
 function post_actions(param, selected) {
+    var btns, btns2, btns_ok, btns_bad;
     // Adds points, green points, change color to green o
-    console.log("post_actions -> nQuestion: " + nQuestion);
-    
+    //console.log("post_actions -> nQuestion: " + nQuestion);
     if(nQuestion < 5){
         // Dots corrects/incorres
         var dots = document.getElementsByClassName('progress')[nQuestion];
         
         // Answers buttons
-        var btns = document.querySelectorAll('div.question-section > button');
+        btns = document.querySelectorAll('div.question-section button');
+        console.log("botones recgod:");
+        console.log(btns);
+        
+        
+        console.log("time end: " + param);
+        
+            switch(param){
+                case true:
+                    // Correct answer
+                    dots.classList.add('correct');
+                    break;
+                case false:
+                    // Wrong answer
+                    dots.classList.add('wrong');
 
-        switch(param){
-            case true:
-                // Correct answer
-                dots.classList.add('correct');
-                break;
-            case false:
-                // Wrong answer
-                dots.classList.add('wrong');
-                btns[selected].classList.add('incorrectButton'); //?????????????
-                break;
-            default:
-                break;
-        }
+                    btns[selected].classList.toggle('incorrectButton'); //?????????????
+                    break;
+                default:
+                    /* Time ends */
+                    console.log("Time finisssshh");
+                    /* Paint red answers */
+                    for(var x=0; x<btns.length; x++){
+                        if(x!=answer) btns[x].classList.toggle('incorrectButton');
+                    }
 
-        btns[answer].classList.add('correctButton');
+                    dots.classList.add('wrong');
+
+                    break;
+            }
+        /* Paint green answer */        
+        btns[answer].classList.toggle('correctButton');
 
         // Highlight wrong and correct answers
-        var btns = document.getElementsByClassName('correctButton');
-        var btns2 = document.getElementsByClassName('incorrectButton');
-
+        btns_ok = document.getElementsByClassName('correctButton');
+        //console.log(btns);
+        
+        btns_bad = document.getElementsByClassName('incorrectButton');
+        //console.log(btns2);
+        
     }
     // Countdown
     setTimeout(function () {
+        //console.log("long corrects: " + btns.length);
+        //console.log("long incorrects: " + btns2.length);
 
-        for(var x=0; x<btns.length; x++){
-            btns[x].classList.toggle('correctButton');
+        //console.log(btns2);
+         
+        for(var x=0; x<btns.length;x++){
+            console.log("value x: " + x);
+            
+            btns[x].classList.remove('incorrectButton');
+            btns[x].classList.remove('correctButton');
         }
-        for(var x=0; x<btns2.length; x++){
-            btns2[x].classList.toggle('incorrectButton');
+
+        /*
+        if(btns2.length > 0){
+            for(var x=0; x<btns2.length; x++){
+                console.log("RESET incorrecto toggle");
+
+                btns2[x].classList.toggle('incorrectButton');
+            }
         }
+        */
         // Next game
         nQuestion++;
-        console.log('---------'+nQuestion+'-------');
+        //console.log('---------'+nQuestion+'-------');
         if(nQuestion==7) nQuestion = 0;
         loadNext(nQuestion);
+
         clearTimeout();
+    startTimer(t_seconds, display);
         
     }, 2500);
+
 }
 
 
@@ -691,7 +737,7 @@ function startTimer(duration, display) {
 
         if (--timer < 0) {
             timer = duration;
-            checkAnswer(4);
+            checkAnswer(null);
         }
     }, 1000);
 }
