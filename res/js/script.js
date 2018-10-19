@@ -2,6 +2,7 @@
 /* Global variable:s answer */
 
 var answer;
+var answers = new Array();
 var nQuestion;
 var timer = 0;
 var mucho_nice = 0;
@@ -94,7 +95,8 @@ function loadall(){
 
 /* Check answer */
 function checkAnswer(selected) {
-    if(answer == selected) { 
+    console.log("pregunta: " + nQuestion);
+    if(answers[nQuestion] == selected) { 
         mucho_nice+=10; 
         bonus+=timer; 
         post_actions(true, selected);
@@ -108,6 +110,9 @@ function checkAnswer(selected) {
         post_actions(false, selected); 
     }
     timer = 10;
+    console.log("seleccionada: " + selected);
+    console.log("buena: " + answers[nQuestion]);
+
 }
 
 /* Post actions answer*/
@@ -143,7 +148,7 @@ function post_actions(param, selected) {
         
                     // Highlight wrong and correct answers            
                     for(var x=0; x<btns.length; x++){
-                        if(x!=answer) btns[x].classList.toggle('incorrectButton');
+                        if(x!=answers[nQuestion]) btns[x].classList.toggle('incorrectButton');
                     }
 
                     dots.classList.add('wrong');
@@ -151,7 +156,7 @@ function post_actions(param, selected) {
                     break;
             }
         /* Paint green answer */        
-        btns[answer].classList.toggle('correctButton');
+        btns[answers[nQuestion]].classList.toggle('correctButton');
 
         
     }
@@ -293,6 +298,7 @@ function getFruits(){
     var ins_for=0;
 
     answer = getRandomInt(0,3);
+    answers.splice(1,0,answer);
     var aux_answer = new Array();
     var numrand=getRandomInt(0, 100);
     var lang=['eu', 'ja', 'zh', 'de', 'cs', 'eo' ,'id', 'fi'];
@@ -354,7 +360,7 @@ function getFruits(){
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
+                            if(answers[1]  == cont) {//document.getElementById('ask_img').src = result[variable].value;
                         aux_answer.splice(0, 0, result[variable].value);
                         image2.src = result[variable].value;}
                         break;
@@ -386,6 +392,7 @@ function getCharacters(){
     var ins_for=0;
 
     answer = getRandomInt(0,3);
+    answers.splice(2,0,answer);
     var aux_answer = new Array();
     var numrand=getRandomInt(0, 100);
     
@@ -446,7 +453,7 @@ function getCharacters(){
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
+                            if(answers[2]  == cont) {//document.getElementById('ask_img').src = result[variable].value;
                         aux_answer.splice(0, 0, result[variable].value);
                         image3.src = result[variable].value;}
                         break;
@@ -479,6 +486,7 @@ function getAnimals(){
     var ins_for=0;
 
     answer = getRandomInt(0,3);
+    answers.splice(3,0,answer);
     var aux_answer = new Array();
     var numrand=getRandomInt(0, 100);
     
@@ -538,7 +546,7 @@ function getAnimals(){
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
+                            if(answers[3]  == cont) {//document.getElementById('ask_img').src = result[variable].value;
                             aux_answer.splice(0, 0, result[variable].value);
                             image4.src = result[variable].value;}
                         break;
@@ -570,6 +578,7 @@ function getBrands(){
     var ins_for=0;
 
     answer = getRandomInt(0,3);
+    answers.splice(4,0,answer);
     var aux_answer = new Array();
     var title;
     var numrand=getRandomInt(0, 100);
@@ -605,7 +614,7 @@ function getBrands(){
                             break;
                         case 1:
                             /* label */
-                            if(answer == cont) {//document.getElementById('txt').innerHTML = result[variable].value;
+                            if(answers[4]  == cont) {//document.getElementById('txt').innerHTML = result[variable].value;
                             title=result[variable].value;
                             //aux_answer.splice(5, 0, result[variable].value);
                         }
@@ -640,7 +649,7 @@ function getBrands(){
                             break;
                         case 4:
                             /* date */
-                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
+                            if(answers[4]  == cont) {//document.getElementById('ask_img').src = result[variable].value;
                             aux_answer.splice(0, 0, result[variable].value);
                             image5.src = result[variable].value;}
                         break;
@@ -671,6 +680,7 @@ function getVideogames() {
     var ins_for=0;
 
     answer = getRandomInt(0,3);
+    answers.splice(0,0,answer);
     var aux_answer = new Array();
     var numrand=getRandomInt(0, 100);
     
@@ -698,7 +708,7 @@ function getVideogames() {
     .then( json => {
         const { head: { vars }, results } = json;
         for ( const result of results.bindings ) {
-            //console.log(results.bindings);
+            console.log(results.bindings);
             ins_for = 0;
             for ( const variable of vars ) {
                 //console.log( '%s: %o', variable, result[variable] );  
@@ -709,7 +719,7 @@ function getVideogames() {
                         case 1:
                             /* label */
 
-                            if(answer == cont) {//document.getElementById('txt').innerHTML = result[variable].value;
+                            if(answers[0] == cont) {//document.getElementById('txt').innerHTML = result[variable].value;
                                 aux_answer.splice(5, 0, result[variable].value);
                                 //console.log(aux_answer);
                             }
@@ -717,7 +727,7 @@ function getVideogames() {
                         case 2:
                             /* img */
 
-                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
+                            if(answers[0] == cont) {//document.getElementById('ask_img').src = result[variable].value;
                             aux_answer.splice(0, 0, result[variable].value);
                             image1.src = result[variable].value;
                                 //console.log(aux_answer);
@@ -729,6 +739,7 @@ function getVideogames() {
                             format = convertDate(result[variable].value);
                             switch(cont){
                                 case 0:
+                                    //if(answer == cont) answers.splice(0,0,answer);
                                     aux_answer.splice(1, 0, format);
                                 //console.log(aux_answer);
                                     //document.getElementById('ans0').innerHTML = format;
