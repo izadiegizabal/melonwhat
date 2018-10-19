@@ -29,7 +29,6 @@ window.onload = function () {
     document.getElementById('game').style.display = 'none';
     // Hide punctuation card
     document.getElementById('results').style.display = 'none';
-    document.getElementById('txt').style.display = 'inline';
 
     //Change melonfact
     changeMelonFact();
@@ -202,7 +201,8 @@ function loadNext(param) {
             document.getElementById('ans0').innerHTML = ans[0][1];
             document.getElementById('ans1').innerHTML = ans[0][2];
             document.getElementById('ans2').innerHTML = ans[0][3];                                
-            document.getElementById('ans3').innerHTML = ans[0][4];                                
+            document.getElementById('ans3').innerHTML = ans[0][4];
+            document.getElementById('txt').style.display = 'inline';                                
 
             // Videogame - year
             //getVideogames();
@@ -218,6 +218,7 @@ function loadNext(param) {
             document.getElementById('ans1').innerHTML = ans[1][2];
             document.getElementById('ans2').innerHTML = ans[1][3];                                
             document.getElementById('ans3').innerHTML = ans[1][4]; 
+            document.getElementById('txt').style.display = 'none';
             //getFruits();
             break;
         case 2:
@@ -231,6 +232,7 @@ function loadNext(param) {
             document.getElementById('ans1').innerHTML = ans[2][2];
             document.getElementById('ans2').innerHTML = ans[2][3];                                
             document.getElementById('ans3').innerHTML = ans[2][4]; 
+            document.getElementById('txt').style.display = 'none';
             //getCharacters();
             break;
         case 3:
@@ -244,12 +246,15 @@ function loadNext(param) {
             document.getElementById('ans1').innerHTML = ans[3][2];
             document.getElementById('ans2').innerHTML = ans[3][3];                                
             document.getElementById('ans3').innerHTML = ans[3][4]; 
+            document.getElementById('txt').style.display = 'none';
             //getAnimals();
             break;
         case 4:
             // Brands
+
             document.getElementById('question').innerHTML = 'Where is it from?';
             document.getElementById('txt').innerHTML = ans[4][5];
+            document.getElementById('txt').style.display = 'inline';
             aux_img = document.getElementById('ask_img');
             aux_img.parentNode.insertBefore(image5, aux_img.nextSibling);
             aux_img.remove();
@@ -385,7 +390,6 @@ function getFruits(){
 function getCharacters(){
 
 
-    document.getElementById('txt').style.display = 'none';
 
     /* Counters */
     var cont = 0;
@@ -479,7 +483,7 @@ function getAnimals(){
 
     
 
-    document.getElementById('txt').style.display = 'none';
+
 
     /* Counters */
     var cont = 0;
