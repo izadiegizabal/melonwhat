@@ -1,3 +1,4 @@
+//https://codepen.io/anon/pen/XxqYgG
 'use strict';
 
 var Confettiful = function Confettiful(el) {
