@@ -21,6 +21,18 @@ window.onload = function () {
 
     //Change melonfact
     changeMelonFact();
+    //Videogames
+    getVideogames();
+    // Fruits
+    getFruits();
+    // Charachters
+    getCharacters();
+    // Animals
+    getAnimals();
+    // Brands
+    getBrands();
+    ///
+    console.log(ans);
 }
 
 
@@ -28,8 +40,10 @@ function loadall(){
     document.getElementById('game').style.display = 'flex';
     document.getElementById('top').style.display = 'none';
     //document.getElementById('results').classList.toggle('unhide');
+    var t_seconds = 10, display = document.querySelector('#time');
+    startTimer(t_seconds, display);
 
-
+        
 
 
 
@@ -37,8 +51,7 @@ function loadall(){
 
 
     // Start timer
-    var t_seconds = 10, display = document.querySelector('#time');
-    startTimer(t_seconds, display);
+    
 
     // Initialize variables
     nQuestion = 0;
@@ -183,24 +196,32 @@ function loadNext(param) {
 
     switch (param) {
         case 0:
+
+            document.getElementById('txt').innerHTML = ans[0][5];
+            document.getElementById('ask_img').src = ans[0][0];
+            document.getElementById('ans0').innerHTML = ans[0][1];
+            document.getElementById('ans1').innerHTML = ans[0][2];
+            document.getElementById('ans2').innerHTML = ans[0][3];                                
+            document.getElementById('ans3').innerHTML = ans[0][4];                                
+
             // Videogame - year
-            getVideogames();
+            //getVideogames();
             break;
         case 1:
             // Fruits
-            getFruits();
+            //getFruits();
             break;
         case 2:
             // Charachters
-            getCharacters();
+            //getCharacters();
             break;
         case 3:
             // Animals
-            getAnimals();
+            //getAnimals();
             break;
         case 4:
             // Brands
-            getBrands();
+            //getBrands();
             break;
         case 5:
             // Results
@@ -281,19 +302,19 @@ function getFruits(){
                             switch(cont){
                                 case 0:
                                     aux_answer.splice(1, 0, format);
-                                    document.getElementById('ans0').innerHTML = format;
+                                    //document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
                                 aux_answer.splice(2, 0, format);
-                                    document.getElementById('ans1').innerHTML = format;
+                                    //document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
                                 aux_answer.splice(3, 0, format);
-                                    document.getElementById('ans2').innerHTML = format;                                
+                                    //document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
                                 aux_answer.splice(4, 0, format);
-                                    document.getElementById('ans3').innerHTML = format;   
+                                    //document.getElementById('ans3').innerHTML = format;   
                                     aux_answer.splice(5, 0, "no_title");                             
                                     break;
                             }
@@ -301,7 +322,7 @@ function getFruits(){
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
                         aux_answer.splice(0, 0, result[variable].value);}
                         break;
                         default:
@@ -318,7 +339,7 @@ function getFruits(){
         
     } );
     ans.push(aux_answer);
-    console.log(ans);
+
 
 }
 
@@ -370,27 +391,27 @@ function getCharacters(){
                             switch(cont){
                                 case 0:
                                     aux_answer.splice(1, 0, format);
-                                    document.getElementById('ans0').innerHTML = format;
+                                    //document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
                                 aux_answer.splice(2, 0, format);
-                                    document.getElementById('ans1').innerHTML = format;
+                                    //document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
                                 aux_answer.splice(3, 0, format);
-                                    document.getElementById('ans2').innerHTML = format;                                
+                                    //document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
                                 aux_answer.splice(4, 0, format);
                                 aux_answer.splice(5, 0, "no_title");  
-                                    document.getElementById('ans3').innerHTML = format;                                
+                                    //document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
                             break;
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
                         aux_answer.splice(0, 0, result[variable].value);}
                         break;
                         default:
@@ -407,7 +428,7 @@ function getCharacters(){
         
     } );
     ans.push(aux_answer);
-    console.log(ans);
+
 
 }
 
@@ -459,27 +480,27 @@ function getAnimals(){
                             switch(cont){
                                 case 0:
                                     aux_answer.splice(1, 0, format);
-                                    document.getElementById('ans0').innerHTML = format;
+                                    //document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
                                 aux_answer.splice(2, 0, format);
-                                    document.getElementById('ans1').innerHTML = format;
+                                    //document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
                                 aux_answer.splice(3, 0, format);
-                                    document.getElementById('ans2').innerHTML = format;                                
+                                    //document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
                                 aux_answer.splice(4, 0, format);
                                 aux_answer.splice(5, 0, "no_title");  
-                                    document.getElementById('ans3').innerHTML = format;                                
+                                    //document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
                             break;
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
                             aux_answer.splice(0, 0, result[variable].value);}
                         break;
                         default:
@@ -496,7 +517,7 @@ function getAnimals(){
         
     } );
     ans.push(aux_answer);
-    console.log(ans);
+
 
 }
 
@@ -543,7 +564,7 @@ function getBrands(){
                             break;
                         case 1:
                             /* label */
-                            if(answer == cont) {document.getElementById('txt').innerHTML = result[variable].value;
+                            if(answer == cont) {//document.getElementById('txt').innerHTML = result[variable].value;
                             title=result[variable].value;
                             //aux_answer.splice(5, 0, result[variable].value);
                         }
@@ -559,26 +580,26 @@ function getBrands(){
                             switch(cont){
                                 case 0:
                                     aux_answer.splice(1, 0, format);
-                                    document.getElementById('ans0').innerHTML = format;
+                                    //document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
                                     aux_answer.splice(2, 0, format);
-                                    document.getElementById('ans1').innerHTML = format;
+                                    //document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
                                 aux_answer.splice(3, 0, format);
-                                    document.getElementById('ans2').innerHTML = format;                                
+                                    //document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
                                 aux_answer.splice(4, 0, format);
                                 aux_answer.splice(5, 0, title);
-                                    document.getElementById('ans3').innerHTML = format;                                
+                                    //document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
                             break;
                         case 4:
                             /* date */
-                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
                             aux_answer.splice(0, 0, result[variable].value);}
                         break;
                         default:
@@ -595,7 +616,7 @@ function getBrands(){
         
     } );
     ans.push(aux_answer);
-    console.log(ans);
+
 
 }
 
@@ -642,7 +663,7 @@ function getVideogames() {
                         case 1:
                             /* label */
 
-                            if(answer == cont) {document.getElementById('txt').innerHTML = result[variable].value;
+                            if(answer == cont) {//document.getElementById('txt').innerHTML = result[variable].value;
                                 aux_answer.splice(5, 0, result[variable].value);
                                 //console.log(aux_answer);
                             }
@@ -650,7 +671,7 @@ function getVideogames() {
                         case 2:
                             /* img */
 
-                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
                             aux_answer.splice(0, 0, result[variable].value);
                                 //console.log(aux_answer);
                             }
@@ -663,22 +684,22 @@ function getVideogames() {
                                 case 0:
                                     aux_answer.splice(1, 0, format);
                                 //console.log(aux_answer);
-                                    document.getElementById('ans0').innerHTML = format;
+                                    //document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
                                 aux_answer.splice(2, 0, format);
                                 //console.log(aux_answer);
-                                    document.getElementById('ans1').innerHTML = format;
+                                    //document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
                                 aux_answer.splice(3, 0, format);
                                 //console.log(aux_answer);
-                                    document.getElementById('ans2').innerHTML = format;                                
+                                    //document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
                                 aux_answer.splice(4, 0, format);
                                 //console.log(aux_answer);
-                                    document.getElementById('ans3').innerHTML = format;                                
+                                    //document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
                             break;
@@ -697,7 +718,7 @@ function getVideogames() {
     } );
 
     ans.push(aux_answer);
-    console.log(ans);
+
     
 
 }
@@ -716,7 +737,7 @@ function getRandomInt(min, max) {
 /* Random melon facts */
 function changeMelonFact(){
 
-    let ranFactNum = getRandomInt(0, melonfacts.length);
+    let ranFactNum = getRandomInt(0, melonfacts.length-1);
 
     console.log("CHANGING FACT to " + ranFactNum);
 
