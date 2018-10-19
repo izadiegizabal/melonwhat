@@ -245,6 +245,7 @@ function getFruits(){
 
     answer = getRandomInt(0,3);
     var aux_answer = new Array();
+    var numrand=getRandomInt(0, 100);
     
     
 
@@ -257,7 +258,9 @@ function getFruits(){
         }
         GROUP BY ?fruit ?fruitLabel
         ORDER BY ?random
-        LIMIT 4`,
+        LIMIT 4
+        #`+numrand,
+
         fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
         headers = { 'Accept': 'application/sparql-results+json' };
 
@@ -334,6 +337,7 @@ function getCharacters(){
 
     answer = getRandomInt(0,3);
     var aux_answer = new Array();
+    var numrand=getRandomInt(0, 100);
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -346,7 +350,9 @@ function getCharacters(){
             }
             GROUP BY ?fictional_character ?fictional_characterLabel 
             ORDER BY ?random
-            LIMIT 4`,
+            LIMIT 4
+             #`+numrand,
+
         fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
         headers = { 'Accept': 'application/sparql-results+json' };
 
@@ -423,6 +429,7 @@ function getAnimals(){
 
     answer = getRandomInt(0,3);
     var aux_answer = new Array();
+    var numrand=getRandomInt(0, 100);
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -435,7 +442,8 @@ function getAnimals(){
             }
             GROUP BY ?animal ?animalLabel
             ORDER BY ?random
-            LIMIT 4`,
+            LIMIT 4
+             #`+numrand,
         fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
         headers = { 'Accept': 'application/sparql-results+json' };
 
@@ -512,6 +520,7 @@ function getBrands(){
     answer = getRandomInt(0,3);
     var aux_answer = new Array();
     var title;
+    var numrand=getRandomInt(0, 100);
 
     
 
@@ -524,7 +533,8 @@ function getBrands(){
               ?marca wdt:P154 ?logo.
             }
             ORDER BY ?random
-            LIMIT 4`,
+            LIMIT 4
+             #`+numrand,
         fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
         headers = { 'Accept': 'application/sparql-results+json' };
 
@@ -609,6 +619,7 @@ function getVideogames() {
 
     answer = getRandomInt(0,3);
     var aux_answer = new Array();
+    var numrand=getRandomInt(0, 100);
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -622,9 +633,12 @@ function getVideogames() {
     }
     GROUP BY ?video_game ?video_gameLabel ?image
     ORDER BY ?random
-    LIMIT 4`,
+    LIMIT 4
+    #`+numrand,
+
         fullUrl = endpointUrl + '?query=' + encodeURIComponent( sparqlQuery ),
         headers = { 'Accept': 'application/sparql-results+json' };
+
 
     fetch( fullUrl, { headers } )
     .then( body => body.json() )
