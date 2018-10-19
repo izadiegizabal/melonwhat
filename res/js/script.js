@@ -44,7 +44,7 @@ window.onload = function () {
 }
 
 
-function loadall(){
+/*function loadall(){
     document.getElementById('game').style.display = 'flex';
     document.getElementById('top').style.display = 'none';
     //document.getElementById('results').classList.toggle('unhide');
@@ -70,22 +70,27 @@ function loadall(){
     //getVideogames();
 
 
-}
+}*/
 /* Play game */
-function play(){
-    document.getElementById('game').style.display = 'flex';
-    document.getElementById('top').style.display = 'none';
-    //document.getElementById('results').classList.toggle('unhide');
+function loadall(){
 
-    // Start timer
-    var t_seconds = 10, display = document.querySelector('#time');
-    startTimer(t_seconds, display);
+    document.getElementById('startBtn').classList.add('hide');
+    document.getElementById('loading').classList.remove('hide');
+    setTimeout(
+    function() {
 
-    // Initialize variables
-    nQuestion = 0;
+        document.getElementById('game').style.display = 'flex';
+        document.getElementById('top').style.display = 'none';
+        //document.getElementById('results').classList.toggle('unhide');
 
-    loadNext(nQuestion);
+        // Start timer
+        var t_seconds = 10, display = document.querySelector('#time');
+        startTimer(t_seconds, display);
 
+        // Initialize variables
+        nQuestion = 0;
+        loadNext(nQuestion);
+    }, 1000);
     //console.log("Get videogames");
     //getVideogames();
 
