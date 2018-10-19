@@ -157,22 +157,23 @@ function post_actions(param, selected) {
     }
     // Countdown
     setTimeout(function () {
-        for(var x=0; x<btns.length;x++){
-            console.log("value x: " + x);
+        if(btns!=undefined){
+            for(var x=0; x<btns.length;x++){
+                console.log("value x: " + x);
+                
+                btns[x].classList.remove('incorrectButton');
+                btns[x].classList.remove('correctButton');
+            }
+
+            // Next game
+            nQuestion++;
+            if(nQuestion==7) nQuestion = 0;
+            loadNext(nQuestion);
+
+            clearTimeout();
             
-            btns[x].classList.remove('incorrectButton');
-            btns[x].classList.remove('correctButton');
+            document.querySelector('#time').textContent = '10s';
         }
-
-        // Next game
-        nQuestion++;
-        if(nQuestion==7) nQuestion = 0;
-        loadNext(nQuestion);
-
-        clearTimeout();
-        
-        document.querySelector('#time').textContent = '10s';
-
         
     }, 1800);
 
