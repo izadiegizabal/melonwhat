@@ -259,6 +259,7 @@ function loadNext(param) {
             console.log("FIN");
             stopTimer();
             displayResults();
+            document.getElementById('conf').classList.remove('hide');
             
             break;
         default:
