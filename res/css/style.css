@@ -2,17 +2,17 @@ body {
     height: 100%;
 }
 
+html {
+    --correct-color: #66BB6A;
+    --incorrect-color: #EF5350;
+}
+
 .correct{
-    background-color: #81C784;;
+    background-color: var(--correct-color);
 }
 
 .wrong{
-    background-color: #E57373
-}
-
-html {
-    --correct-color: #81C784;
-    --incorrect-color: #E57373;
+    background-color: var(--incorrect-color);
 }
 
 .mdl-mini-footer {
@@ -130,12 +130,12 @@ html {
 
 .incorrectButton {
     transition: background-color 0.3s ease-in;
-    background-color: #EF5350 !important;
+    background-color: var(--incorrect-color) !important;
 }
 
 .correctButton {
     transition: background-color 0.3s ease-in;
-    background-color: #66BB6A !important;
+    background-color: var(--correct-color) !important;
 }
 
 

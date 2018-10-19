@@ -313,12 +313,13 @@ function getFruits(){
     answer = getRandomInt(0,3);
     var aux_answer = new Array();
     var numrand=getRandomInt(0, 100);
-    
+    var lang=['eu', 'ja', 'zh', 'de', 'cs', 'eo' ,'id', 'fi'];
+    var langrand =getRandomInt(0, lang.length-1);    
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
       sparqlQuery = `SELECT DISTINCT ?fruit ?fruitLabel (MIN(?image) AS ?img) (MD5(CONCAT(str(?fruit),str(RAND()))) as ?random) WHERE {
-          SERVICE wikibase:label { bd:serviceParam wikibase:language "de". }
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "`+lang[langrand]+`". }
           ?fruit wdt:P279 wd:Q3314483.
           ?fruit rdfs:label ?fruitLabel.
           ?fruit wdt:P18 ?image. 
