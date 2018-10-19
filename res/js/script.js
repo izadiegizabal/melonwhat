@@ -198,6 +198,7 @@ function getFruits(){
     var ins_for=0;
 
     answer = getRandomInt(0,3);
+    var aux_answer = new Array();
     
     
 
@@ -226,30 +227,36 @@ function getFruits(){
                 switch (ins_for) {
                         case 0:
                             /* wd */
+                            
                             break;
                         case 1:
                             /* label */
                             format = result[variable].value;
                             switch(cont){
                                 case 0:
-                                    
+                                    aux_answer.splice(1, 0, format);
                                     document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
+                                aux_answer.splice(2, 0, format);
                                     document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
+                                aux_answer.splice(3, 0, format);
                                     document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
-                                    document.getElementById('ans3').innerHTML = format;                                
+                                aux_answer.splice(4, 0, format);
+                                    document.getElementById('ans3').innerHTML = format;   
+                                    aux_answer.splice(5, 0, "no_title");                             
                                     break;
                             }
                             break;
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                        aux_answer.splice(0, 0, result[variable].value);}
                         break;
                         default:
                             break;
@@ -264,6 +271,8 @@ function getFruits(){
         }
         
     } );
+    ans.push(aux_answer);
+    console.log(ans);
 
 }
 
@@ -278,6 +287,7 @@ function getCharacters(){
     var ins_for=0;
 
     answer = getRandomInt(0,3);
+    var aux_answer = new Array();
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -306,22 +316,27 @@ function getCharacters(){
                 switch (ins_for) {
                         case 0:
                             /* wd */
+                            
                             break;
                         case 1:
                             /* label */
                             format = result[variable].value;
                             switch(cont){
                                 case 0:
-                                    
+                                    aux_answer.splice(1, 0, format);
                                     document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
+                                aux_answer.splice(2, 0, format);
                                     document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
+                                aux_answer.splice(3, 0, format);
                                     document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
+                                aux_answer.splice(4, 0, format);
+                                aux_answer.splice(5, 0, "no_title");  
                                     document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
@@ -329,7 +344,8 @@ function getCharacters(){
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                        aux_answer.splice(0, 0, result[variable].value);}
                         break;
                         default:
                             break;
@@ -344,6 +360,8 @@ function getCharacters(){
         }
         
     } );
+    ans.push(aux_answer);
+    console.log(ans);
 
 }
 
@@ -358,7 +376,7 @@ function getAnimals(){
     var ins_for=0;
 
     answer = getRandomInt(0,3);
-
+    var aux_answer = new Array();
     
 
     const endpointUrl = 'https://query.wikidata.org/sparql',
@@ -387,22 +405,27 @@ function getAnimals(){
                 switch (ins_for) {
                         case 0:
                             /* wd */
+                             
                             break;
                         case 1:
                             /* label */
                             format = result[variable].value;
                             switch(cont){
                                 case 0:
-                                    
+                                    aux_answer.splice(1, 0, format);
                                     document.getElementById('ans0').innerHTML = format;
                                     break;
                                 case 1:
+                                aux_answer.splice(2, 0, format);
                                     document.getElementById('ans1').innerHTML = format;
                                     break;
                                 case 2:
+                                aux_answer.splice(3, 0, format);
                                     document.getElementById('ans2').innerHTML = format;                                
                                     break;
                                 case 3:
+                                aux_answer.splice(4, 0, format);
+                                aux_answer.splice(5, 0, "no_title");  
                                     document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
@@ -410,7 +433,8 @@ function getAnimals(){
                         case 2:
                             /* img */
                             /* date */
-                            if(answer == cont) document.getElementById('ask_img').src = result[variable].value;
+                            if(answer == cont) {document.getElementById('ask_img').src = result[variable].value;
+                            aux_answer.splice(0, 0, result[variable].value);}
                         break;
                         default:
                             break;
@@ -425,6 +449,8 @@ function getAnimals(){
         }
         
     } );
+    ans.push(aux_answer);
+    console.log(ans);
 
 }
 
@@ -439,6 +465,7 @@ function getBrands(){
 
     answer = getRandomInt(0,3);
     var aux_answer = new Array();
+    var title;
 
     
 
@@ -471,7 +498,9 @@ function getBrands(){
                         case 1:
                             /* label */
                             if(answer == cont) {document.getElementById('txt').innerHTML = result[variable].value;
-                            aux_answer.splice(5, 0, result[variable].value);}
+                            title=result[variable].value;
+                            //aux_answer.splice(5, 0, result[variable].value);
+                        }
                             break;
                         case 2:
                             /* img */
@@ -496,6 +525,7 @@ function getBrands(){
                                     break;
                                 case 3:
                                 aux_answer.splice(4, 0, format);
+                                aux_answer.splice(5, 0, title);
                                     document.getElementById('ans3').innerHTML = format;                                
                                     break;
                             }
