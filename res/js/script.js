@@ -786,10 +786,17 @@ function changeMelonFact(){
 
     document.getElementById('melonfact').innerHTML = melonfacts[ranFactNum];
 }
-
+function enableButtons(){
+    document.getElementById('question-section').classList.remove('disableBtn');
+}
+function disableButtons(){
+    document.getElementById('question-section').classList.add('disableBtn');
+}
 
 /* Timer countdown */
 function startTimer() {
+
+    enableButtons();
 
     display = document.querySelector('#time');
 
@@ -800,8 +807,10 @@ function startTimer() {
     
 }
 
+
 function stopTimer(){
     clearInterval(clock);
+    disableButtons();
 }
 
 function update(){
