@@ -3,8 +3,10 @@
 
 var answer;
 var nQuestion;
-var score = 0;
 var timer = 0;
+var mucho_nice = 0;
+var wrong = 0;
+var bonus = 0;
 
 
 
@@ -45,8 +47,8 @@ function play(){
 
 /* Check answer */
 function checkAnswer(selected) {
-    if(answer == selected) {post_actions(true, selected); score=+(10+timer);}
-    else {post_actions(false, selected); score=+5;}
+    if(answer == selected) {mucho_nice+=10; bonus+=timer; post_actions(true, selected); }
+    else {wrong-=5; post_actions(false, selected);}
     timer = 10;
 }
 
@@ -147,6 +149,13 @@ function loadNext(param) {
 function displayResults() {
     console.log("OYE");
 
+
+    document.getElementById('wrong').innerHTML = +wrong;
+    document.getElementById('mucho_nice').innerHTML = '+'+mucho_nice;
+    document.getElementById('bonus').innerHTML = '+'+bonus;
+    document.getElementById('final').innerHTML = mucho_nice+bonus+wrong;
+    document.getElementById('how_nice').innerHTML = '&nbsp; '+(mucho_nice/10)+'/5';
+    document.getElementById('how_wrong').innerHTML = '&nbsp; '+(Math.abs(wrong)/5)+'/5';
     document.getElementById('results').style.display = 'flex';
     document.getElementById('game').style.display = 'none';
 
