@@ -17,6 +17,9 @@ var image5 = new Image();
 image1.id='ask_img', image2.id='ask_img', image3.id='ask_img', image4.id='ask_img',image5.id='ask_img';
 image1.className='card-img', image2.className='card-img', image3.className='card-img', image4.className='card-img',image5.className='card-img';
 
+var clock;
+var display;
+var t_seconds = 10;
 
 
 window.onload = function () {
@@ -49,13 +52,7 @@ window.onload = function () {
     document.getElementById('top').style.display = 'none';
     //document.getElementById('results').classList.toggle('unhide');
     var t_seconds = 10, display = document.querySelector('#time');
-    startTimer(t_seconds, display);
-
-        
-
-
-
-
+    //startTimer(t_seconds, display);
 
 
     // Start timer
@@ -79,13 +76,13 @@ function loadall(){
     setTimeout(
     function() {
 
+    // Start timer
         document.getElementById('game').style.display = 'flex';
         document.getElementById('top').style.display = 'none';
         //document.getElementById('results').classList.toggle('unhide');
 
         // Start timer
         var t_seconds = 10, display = document.querySelector('#time');
-        startTimer(t_seconds, display);
 
         // Initialize variables
         nQuestion = 0;
@@ -93,8 +90,6 @@ function loadall(){
     }, 1000);
     //console.log("Get videogames");
     //getVideogames();
-
-
 }
 
 /* Check answer */
@@ -118,19 +113,19 @@ function checkAnswer(selected) {
 /* Post actions answer*/
 function post_actions(param, selected) {
     var btns, btns2, btns_ok, btns_bad;
+
+    stopTimer();
+
+   
+
+   
     // Adds points, green points, change color to green o
-    //console.log("post_actions -> nQuestion: " + nQuestion);
     if(nQuestion < 5){
         // Dots corrects/incorres
         var dots = document.getElementsByClassName('progress')[nQuestion];
         
         // Answers buttons
         btns = document.querySelectorAll('div.question-section button');
-        console.log("botones recgod:");
-        console.log(btns);
-        
-        
-        console.log("time end: " + param);
         
             switch(param){
                 case true:
@@ -145,8 +140,8 @@ function post_actions(param, selected) {
                     break;
                 default:
                     /* Time ends */
-                    console.log("Time finisssshh");
-                    /* Paint red answers */
+        
+                    // Highlight wrong and correct answers            
                     for(var x=0; x<btns.length; x++){
                         if(x!=answer) btns[x].classList.toggle('incorrectButton');
                     }
@@ -158,21 +153,10 @@ function post_actions(param, selected) {
         /* Paint green answer */        
         btns[answer].classList.toggle('correctButton');
 
-        // Highlight wrong and correct answers
-        btns_ok = document.getElementsByClassName('correctButton');
-        //console.log(btns);
-        
-        btns_bad = document.getElementsByClassName('incorrectButton');
-        //console.log(btns2);
         
     }
     // Countdown
     setTimeout(function () {
-        //console.log("long corrects: " + btns.length);
-        //console.log("long incorrects: " + btns2.length);
-
-        //console.log(btns2);
-         
         for(var x=0; x<btns.length;x++){
             console.log("value x: " + x);
             
@@ -180,25 +164,18 @@ function post_actions(param, selected) {
             btns[x].classList.remove('correctButton');
         }
 
-        /*
-        if(btns2.length > 0){
-            for(var x=0; x<btns2.length; x++){
-                console.log("RESET incorrecto toggle");
-
-                btns2[x].classList.toggle('incorrectButton');
-            }
-        }
-        */
         // Next game
         nQuestion++;
-        //console.log('---------'+nQuestion+'-------');
         if(nQuestion==7) nQuestion = 0;
         loadNext(nQuestion);
 
         clearTimeout();
-    startTimer(t_seconds, display);
         
-    }, 2500);
+        document.querySelector('#time').textContent = '10s';
+
+        
+    }, 1800);
+
 
 }
 
@@ -206,9 +183,11 @@ function post_actions(param, selected) {
 /* Load question info */
 function loadNext(param) {
 
+    startTimer();
 
     switch (param) {
         case 0:
+        
             document.getElementById('question').innerHTML = 'When was it released?';
             document.getElementById('txt').innerHTML = ans[0][5];
             aux_img = document.getElementById('ask_img');
@@ -277,6 +256,7 @@ function loadNext(param) {
         case 5:
             // Results
             console.log("FIN");
+            stopTimer();
             displayResults();
             
             break;
@@ -285,14 +265,10 @@ function loadNext(param) {
     }
 
 
-    console.log("Respuesta: " + answer);
-    console.log("nQues: " + nQuestion);
 }
 
 /* Display results */
 function displayResults() {
-    console.log("OYE");
-
 
     document.getElementById('wrong').innerHTML = +wrong;
     document.getElementById('mucho_nice').innerHTML = '+'+mucho_nice;
@@ -786,10 +762,7 @@ function getVideogames() {
         }
         
     } );
-
     ans.push(aux_answer);
-
-    
 
 }
 
@@ -816,21 +789,35 @@ function changeMelonFact(){
 
 
 /* Timer countdown */
-function startTimer(duration, display) {
-    timer = duration;
-    var seconds;
-    setInterval(function () {
+function startTimer() {
 
-        seconds = parseInt(timer % 60, 10);
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+    display = document.querySelector('#time');
 
-        display.textContent = seconds + 's';
+    clock = setInterval(update, 1000);
 
-        if (--timer < 0) {
-            timer = duration;
-            checkAnswer(null);
-        }
-    }, 1000);
+    timer = t_seconds;
+    console.log("timer" + timer);
+    
+}
+
+function stopTimer(){
+    clearInterval(clock);
+}
+
+function update(){
+    var seconds = parseInt(timer % 60, 10);
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = seconds + 's';
+    if (--timer < 0) {
+        timer = t_seconds;
+        /* Time ended, wrong question */
+        stopTimer();
+        checkAnswer(null);
+    }
+
+    console.log("segundos: " + seconds);
+    
 }
 
 const melonfacts = [
