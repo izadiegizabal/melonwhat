@@ -9,6 +9,14 @@ var wrong = 0;
 var bonus = 0;
 var ans = new Array();
 
+var image1 = new Image();
+var image2 = new Image();
+var image3 = new Image();
+var image4 = new Image();
+var image5 = new Image();
+image1.id='ask_img', image2.id='ask_img', image3.id='ask_img', image4.id='ask_img',image5.id='ask_img';
+image1.className='card-img', image2.className='card-img', image3.className='card-img', image4.className='card-img',image5.className='card-img';
+
 
 
 window.onload = function () {
@@ -196,9 +204,11 @@ function loadNext(param) {
 
     switch (param) {
         case 0:
-
+            document.getElementById('question').innerHTML = 'When was it released?';
             document.getElementById('txt').innerHTML = ans[0][5];
-            document.getElementById('ask_img').src = ans[0][0];
+            aux_img = document.getElementById('ask_img');
+            aux_img.parentNode.insertBefore(image1, aux_img.nextSibling);
+            aux_img.remove();
             document.getElementById('ans0').innerHTML = ans[0][1];
             document.getElementById('ans1').innerHTML = ans[0][2];
             document.getElementById('ans2').innerHTML = ans[0][3];                                
@@ -209,18 +219,54 @@ function loadNext(param) {
             break;
         case 1:
             // Fruits
+            document.getElementById('question').innerHTML = 'What fruit is it?';
+            document.getElementById('txt').innerHTML = ans[1][5];
+            aux_img = document.getElementById('ask_img');
+            aux_img.parentNode.insertBefore(image2, aux_img.nextSibling);
+            aux_img.remove();
+            document.getElementById('ans0').innerHTML = ans[1][1];
+            document.getElementById('ans1').innerHTML = ans[1][2];
+            document.getElementById('ans2').innerHTML = ans[1][3];                                
+            document.getElementById('ans3').innerHTML = ans[1][4]; 
             //getFruits();
             break;
         case 2:
             // Charachters
+            document.getElementById('question').innerHTML = 'Who is it?';
+            document.getElementById('txt').innerHTML = ans[2][5];
+            aux_img = document.getElementById('ask_img');
+            aux_img.parentNode.insertBefore(image3, aux_img.nextSibling);
+            aux_img.remove();
+            document.getElementById('ans0').innerHTML = ans[2][1];
+            document.getElementById('ans1').innerHTML = ans[2][2];
+            document.getElementById('ans2').innerHTML = ans[2][3];                                
+            document.getElementById('ans3').innerHTML = ans[2][4]; 
             //getCharacters();
             break;
         case 3:
             // Animals
+            document.getElementById('question').innerHTML = 'How do you describe the picture?';
+            document.getElementById('txt').innerHTML = ans[3][5];
+            aux_img = document.getElementById('ask_img');
+            aux_img.parentNode.insertBefore(image4, aux_img.nextSibling);
+            aux_img.remove();
+            document.getElementById('ans0').innerHTML = ans[3][1];
+            document.getElementById('ans1').innerHTML = ans[3][2];
+            document.getElementById('ans2').innerHTML = ans[3][3];                                
+            document.getElementById('ans3').innerHTML = ans[3][4]; 
             //getAnimals();
             break;
         case 4:
             // Brands
+            document.getElementById('question').innerHTML = 'Where is it from?';
+            document.getElementById('txt').innerHTML = ans[4][5];
+            aux_img = document.getElementById('ask_img');
+            aux_img.parentNode.insertBefore(image5, aux_img.nextSibling);
+            aux_img.remove();
+            document.getElementById('ans0').innerHTML = ans[4][1];
+            document.getElementById('ans1').innerHTML = ans[4][2];
+            document.getElementById('ans2').innerHTML = ans[4][3];                                
+            document.getElementById('ans3').innerHTML = ans[4][4]; 
             //getBrands();
             break;
         case 5:
@@ -257,7 +303,7 @@ function displayResults() {
 
 function getFruits(){
 
-    document.getElementById('question').innerHTML = 'What fruit is it?';
+    
     document.getElementById('txt').style.display = 'none';
 
     /* Counters */
@@ -326,7 +372,8 @@ function getFruits(){
                             /* img */
                             /* date */
                             if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
-                        aux_answer.splice(0, 0, result[variable].value);}
+                        aux_answer.splice(0, 0, result[variable].value);
+                        image2.src = result[variable].value;}
                         break;
                         default:
                             break;
@@ -348,7 +395,6 @@ function getFruits(){
 
 function getCharacters(){
 
-    document.getElementById('question').innerHTML = 'Who is it?';
 
     document.getElementById('txt').style.display = 'none';
 
@@ -418,7 +464,8 @@ function getCharacters(){
                             /* img */
                             /* date */
                             if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
-                        aux_answer.splice(0, 0, result[variable].value);}
+                        aux_answer.splice(0, 0, result[variable].value);
+                        image3.src = result[variable].value;}
                         break;
                         default:
                             break;
@@ -440,7 +487,7 @@ function getCharacters(){
 
 function getAnimals(){
 
-    document.getElementById('question').innerHTML = 'How do you describe the picture?';
+    
 
     document.getElementById('txt').style.display = 'none';
 
@@ -509,7 +556,8 @@ function getAnimals(){
                             /* img */
                             /* date */
                             if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
-                            aux_answer.splice(0, 0, result[variable].value);}
+                            aux_answer.splice(0, 0, result[variable].value);
+                            image4.src = result[variable].value;}
                         break;
                         default:
                             break;
@@ -532,7 +580,7 @@ function getAnimals(){
 
 function getBrands(){
 
-    document.getElementById('question').innerHTML = 'Where is it from?';
+    
 
     /* Counters */
     var cont = 0;
@@ -610,7 +658,8 @@ function getBrands(){
                         case 4:
                             /* date */
                             if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
-                            aux_answer.splice(0, 0, result[variable].value);}
+                            aux_answer.splice(0, 0, result[variable].value);
+                            image5.src = result[variable].value;}
                         break;
                         default:
                             break;
@@ -632,7 +681,7 @@ function getBrands(){
 
 function getVideogames() {
 
-    document.getElementById('question').innerHTML = 'When was it released?';
+    
 
     /* Counters */
     var cont = 0;
@@ -687,6 +736,7 @@ function getVideogames() {
 
                             if(answer == cont) {//document.getElementById('ask_img').src = result[variable].value;
                             aux_answer.splice(0, 0, result[variable].value);
+                            image1.src = result[variable].value;
                                 //console.log(aux_answer);
                             }
 
