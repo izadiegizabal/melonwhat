@@ -264,7 +264,6 @@ function loadNext(param) {
             break;
     }
 
-
 }
 
 /* Display results */
