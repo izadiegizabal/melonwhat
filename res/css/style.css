@@ -82,6 +82,13 @@ html {
     font-size: 1.2rem;
 }
 
+.loading {
+    margin-top: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .randomfact {
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 300;
@@ -172,8 +179,4 @@ html {
 
 .hide {
     display: none;
-}
-
-.unhide {
-    display: inherit;
 }

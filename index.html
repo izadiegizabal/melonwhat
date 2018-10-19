@@ -17,6 +17,7 @@
     <meta name="theme-color" content="#009688">
 
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-pink.min.css"/>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:700i|IBM+Plex+Sans:300i|IBM+Plex+Sans+Condensed:500"
           rel="stylesheet">
     <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/twotone.css">
@@ -42,30 +43,35 @@
                 <!-- INITIAL CARD -->
                 <div class="mdl-cell mdl-cell--12-col mdl-cell--3-offset-desktop mdl-cell--6-col-desktop">
                     <div id="top" class="main-card mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Welcome!</h2>
+                        <div id="welcomeMsg">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Welcome!</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <span class="label">Did you know...</span>
+                                <br>
+                                <span id="melonfact" class="randomfact"></span>
+                                <br>
+                                <br>
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a onclick="loadall()"
+                                   class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                    What?
+                                </a>
+                            </div>
+                            <div class="mdl-card__menu">
+                                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+                                        onclick="location.href='https://github.com/izadiegizabal/melonwhat'">
+                                    <i class="material-icons-new twotone-code"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="mdl-card__supporting-text">
-                            <span class="label">Did you know...</span>
-                            <br>
-                            <span id="melonfact" class="randomfact"></span>
-                            <br>
-                            <br>
-                        </div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a onclick="loadall()"
-                               class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                What?
-                            </a>
-                        </div>
-                        <div class="mdl-card__menu">
-                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-                                    onclick="location.href='https://github.com/izadiegizabal/melonwhat'">
-                                <i class="material-icons-new twotone-code"></i>
-                            </button>
+
+                        <div id="loading" class="mdl-cell mdl-cell--12-col hide">
+                            <div class="mdl-spinner mdl-js-spinner is-active"></div>
                         </div>
                     </div>
-
 
                     <!-- GAME CARD -->
                     <div id="game" class="hide main-card mdl-card mdl-shadow--2dp">
